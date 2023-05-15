@@ -1,0 +1,21 @@
+{
+  "name": "mad-mints",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.3.7",
+    "@solana/web3.js": "^1.76.0",
+    "@types/bs58": "^4.0.1",
+    "@types/node": "^20.1.4"
+  }
+}
