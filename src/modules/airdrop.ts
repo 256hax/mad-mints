@@ -10,9 +10,14 @@ export const airdrop = async (
 ) => {
   const latestBlockhash = await connection.getLatestBlockhash();
   const signatureAirdrop = await connection.requestAirdrop(takerPublicKey, LAMPORTS_PER_SOL);
-  await connection.confirmTransaction({
-    blockhash: latestBlockhash.blockhash,
-    lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
-    signature: signatureAirdrop,
-  });
+
+  try {
+    await connection.confirmTransaction({
+      blockhash: latestBlockhash.blockhash,
+      lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+      signature: signatureAirdrop,
+    });
+  } catch(error) {
+    console.log(error);
+  }
 };
