@@ -11,6 +11,7 @@ import {
 // Modules
 import { airdrop } from "./modules/airdrop";
 import { createNonceAccount } from "./modules/createNonceAccount";
+import { getNonceAccount } from "./modules/getNonceAccount";
 
 const main = async () => {
   const connection = new Connection('http://127.0.0.1:8899', 'confirmed');
@@ -20,28 +21,20 @@ const main = async () => {
 
   const feePayer = Keypair.generate();
 
-  try {
-    await airdrop(connection, feePayer.publicKey);
-    const balance = await connection.getBalance(feePayer.publicKey);
-    console.log('Balance(Lamports) =>', balance);
-  } catch {
-    console.log('Airdrop failed.');
-  }
+  await airdrop(connection, feePayer.publicKey);
 
-  try {
-    const [nonceAccount, signature] = await createNonceAccount(
-      connection,
-      feePayer,
-      nonceAccountAuth.publicKey,
-    );
+  const nonceAccount = await createNonceAccount(
+    connection,
+    feePayer,
+    nonceAccountAuth.publicKey,
+  );
+  if(!nonceAccount) throw Error('Nonce Account not found.');
+  console.log('nonceAccount =>', nonceAccount.toString());
 
-    console.log('nonceAccount =>', nonceAccount.toString());
-    console.log('signature =>', signature);
-  } catch {
-    console.log('Failed to create nonce account.');
-  }
-
-
+  const regetNonceAccount = await getNonceAccount(connection, nonceAccount);
+  if(!regetNonceAccount) throw Error('Nonce Account not found.');
+  console.log('nonce =>', regetNonceAccount.nonce);
+  console.log('authorityAccount =>', regetNonceAccount.authorizedPubkey.toString());
 };
 
 main();
