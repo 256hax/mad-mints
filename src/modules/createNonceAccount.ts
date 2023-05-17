@@ -1,16 +1,13 @@
 // Ref: https://solanacookbook.com/references/offline-transactions.html#durable-nonce
 import {
   Connection,
-  clusterApiUrl,
   Keypair,
-  LAMPORTS_PER_SOL,
   NONCE_ACCOUNT_LENGTH,
   SystemProgram,
   Transaction,
   sendAndConfirmTransaction,
   PublicKey,
 } from "@solana/web3.js";
-import * as bs58 from "bs58";
 
 export const createNonceAccount = async (
   connection: Connection,
