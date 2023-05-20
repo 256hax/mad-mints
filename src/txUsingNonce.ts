@@ -54,16 +54,17 @@ const main = async () => {
   nonce = nonceAccountInfo.nonce;
 
   // ------------------------------------
-  //  Create Instruction
+  //  Start Speed Test
   // ------------------------------------
-  let startTimeTotal: number = 0;
-  let endTimeTotal: number = 0;
+  const startTimeTotal = performance.now();
   let startTime: number;
   let endTime: number;
 
-  startTime = performance.now();
-  startTimeTotal += startTime;
+  console.log('--- Bottleneck in Performance ---------------------------');
 
+  // ------------------------------------
+  //  Create Instruction
+  // ------------------------------------
   let tx = new Transaction();
 
   // nonce advance must be the first insturction
@@ -85,7 +86,7 @@ const main = async () => {
 
   tx.add(nonceInstruction);
 
-  const executionTimes = 20;
+  const executionTimes = 10;
   for (let i = 0; i < executionTimes; i++) {
     tx.add(txInstruction);
   }
@@ -93,30 +94,38 @@ const main = async () => {
   // assign `nonce` as recentBlockhash
   tx.recentBlockhash = nonce;
   tx.feePayer = payer.publicKey;
+
+  // ------------------------------------
+  //  Sign Transaction
+  // ------------------------------------
+  startTime = 0, endTime = 0; // Init
+  startTime = performance.now();
+
   tx.sign(
     payer,
     nonceAccountAuth
   );
 
   endTime = performance.now();
-  endTimeTotal += endTime;
-  console.log('Create Instruction =>', endTime - startTime, 'ms');
+  console.log('Sign Transaction   =>', endTime - startTime, 'ms');
 
   // ------------------------------------
   //  Send Transaction
   // ------------------------------------
   startTime = 0, endTime = 0; // Init
   startTime = performance.now();
-  startTimeTotal += startTime;
 
   signature = await connection.sendRawTransaction(tx.serialize());
 
   endTime = performance.now();
-  endTimeTotal += endTime;
   console.log('Send Transaction   =>', endTime - startTime, 'ms');
 
-  console.log('------------------------------------------------');
-  console.log('Total              =>', endTimeTotal - startTimeTotal, 'ms');
+  // ------------------------------------
+  //  End Speed Test
+  // ------------------------------------
+  const endTimeTotal = performance.now();
+  console.log('--- Summary ---------------------------------------------');
+  console.log('Entire             =>', endTimeTotal - startTimeTotal, 'ms');
   console.log('signature          =>', signature);
 };
 
