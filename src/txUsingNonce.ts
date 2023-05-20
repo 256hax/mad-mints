@@ -24,7 +24,7 @@ const main = async () => {
   const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
   
-  const feePayer = Keypair.generate();
+  const payer = Keypair.generate();
   const reference = Keypair.generate();
   const taker = Keypair.generate();
   let nonceAccount: PublicKey | null;
@@ -34,14 +34,14 @@ const main = async () => {
   // ------------------------------------
   //  Airdrop to Fee Payer
   // ------------------------------------
-  await airdrop(connection, feePayer.publicKey);
+  await airdrop(connection, payer.publicKey);
 
   // ------------------------------------
   //  Create Nonce Account
   // ------------------------------------
   nonceAccount = await createNonceAccount(
     connection,
-    feePayer,
+    payer,
     nonceAccountAuth.publicKey,
   );
 
@@ -70,7 +70,7 @@ const main = async () => {
 
   // after that, you do what you really want to do, here we append a transfer instruction as an example.
   let txInstruction = SystemProgram.transfer({
-    fromPubkey: feePayer.publicKey,
+    fromPubkey: payer.publicKey,
     toPubkey: taker.publicKey,
     lamports: LAMPORTS_PER_SOL * 0.01,
   });
@@ -84,15 +84,15 @@ const main = async () => {
 
   // assign `nonce` as recentBlockhash
   tx.recentBlockhash = nonce;
-  tx.feePayer = feePayer.publicKey;
+  tx.feePayer = payer.publicKey;
   tx.sign(
-    feePayer,
+    payer,
     nonceAccountAuth
   ); /* fee payer + nonce account authority + ... */
 
   signature = await connection.sendRawTransaction(tx.serialize());
 
-  console.log('feePayer =>', feePayer.publicKey.toString());
+  console.log('payer =>', payer.publicKey.toString());
   console.log('nonce =>', nonce);
   console.log('authority =>', nonceAccountAuth.publicKey.toString());
   console.log('signature =>', signature);
