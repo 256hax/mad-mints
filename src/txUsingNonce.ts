@@ -21,7 +21,7 @@ const main = async () => {
 
   const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
-  
+
   const payer = Keypair.generate();
   const reference = Keypair.generate();
   const taker = Keypair.generate();
@@ -54,9 +54,15 @@ const main = async () => {
   nonce = nonceAccountInfo.nonce;
 
   // ------------------------------------
-  //  Use Nonce Account
+  //  Create Instruction
   // ------------------------------------
-  const startTime = performance.now();
+  let startTimeTotal: number = 0;
+  let endTimeTotal: number = 0;
+  let startTime: number;
+  let endTime: number;
+
+  startTime = performance.now();
+  startTimeTotal += startTime;
 
   let tx = new Transaction();
 
@@ -78,7 +84,11 @@ const main = async () => {
   );
 
   tx.add(nonceInstruction);
-  tx.add(txInstruction);
+
+  const executionTimes = 20;
+  for (let i = 0; i < executionTimes; i++) {
+    tx.add(txInstruction);
+  }
 
   // assign `nonce` as recentBlockhash
   tx.recentBlockhash = nonce;
@@ -88,12 +98,26 @@ const main = async () => {
     nonceAccountAuth
   );
 
+  endTime = performance.now();
+  endTimeTotal += endTime;
+  console.log('Create Instruction =>', endTime - startTime, 'ms');
+
+  // ------------------------------------
+  //  Send Transaction
+  // ------------------------------------
+  startTime = 0, endTime = 0; // Init
+  startTime = performance.now();
+  startTimeTotal += startTime;
+
   signature = await connection.sendRawTransaction(tx.serialize());
 
-  const endTime = performance.now();
+  endTime = performance.now();
+  endTimeTotal += endTime;
+  console.log('Send Transaction   =>', endTime - startTime, 'ms');
 
-  console.log('Processing Time =>', endTime - startTime, 'ms');
-  console.log('signature =>', signature);
+  console.log('------------------------------------------------');
+  console.log('Total              =>', endTimeTotal - startTimeTotal, 'ms');
+  console.log('signature          =>', signature);
 };
 
 main();

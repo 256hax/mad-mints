@@ -24,12 +24,29 @@ const main = async () => {
   await airdrop(connection, payer.publicKey);
 
   // ------------------------------------
-  //  Transfer
+  //  Get Latest Blockhash
   // ------------------------------------
-  const startTime = performance.now();
+  let startTimeTotal: number = 0;
+  let endTimeTotal: number = 0;
+  let startTime: number;
+  let endTime: number;
+
+  startTime = performance.now();
+  startTimeTotal += startTime;
 
   let tx = new Transaction();
   const blockHash = await connection.getLatestBlockhash();
+
+  endTime = performance.now();
+  endTimeTotal += endTime;
+  console.log('Get Latest Blockhash   =>', endTime - startTime, 'ms');
+
+  // ------------------------------------
+  //  Create Instruction
+  // ------------------------------------
+  startTime = 0, endTime = 0; // Init
+  startTime = performance.now();
+  startTimeTotal += startTime;
 
   let txInstruction = SystemProgram.transfer({
     fromPubkey: payer.publicKey,
@@ -40,18 +57,35 @@ const main = async () => {
     { pubkey: reference.publicKey, isWritable: false, isSigner: false },
   );
 
-  tx.add(txInstruction);
+  const executionTimes = 20;
+  for (let i = 0; i < executionTimes; i++) {
+    tx.add(txInstruction);
+  }
 
   tx.recentBlockhash = blockHash.blockhash;
   tx.feePayer = payer.publicKey;
   tx.sign(payer);
 
+  endTime = performance.now();
+  endTimeTotal += endTime;
+  console.log('Create Instruction     =>', endTime - startTime, 'ms');
+
+  // ------------------------------------
+  //  Send Transaction
+  // ------------------------------------
+  startTime = 0, endTime = 0; // Init
+  startTime = performance.now();
+  startTimeTotal += startTime;
+
   signature = await connection.sendRawTransaction(tx.serialize());
 
-  const endTime = performance.now();
+  endTime = performance.now();
+  endTimeTotal += endTime;
+  console.log('Send Transaction       =>', endTime - startTime, 'ms');
 
-  console.log('Processing Time =>', endTime - startTime, 'ms');
-  console.log('signature =>', signature);
+  console.log('------------------------------------------------');
+  console.log('Total                  =>', endTimeTotal - startTimeTotal, 'ms');
+  console.log('signature              =>', signature);
 };
 
 main();
