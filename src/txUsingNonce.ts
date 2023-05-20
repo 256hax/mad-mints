@@ -26,6 +26,7 @@ const main = async () => {
   
   const feePayer = Keypair.generate();
   const reference = Keypair.generate();
+  const taker = Keypair.generate();
   let nonceAccount: PublicKey | null;
   let nonce: string;
   let signature: string;
@@ -70,9 +71,10 @@ const main = async () => {
   // after that, you do what you really want to do, here we append a transfer instruction as an example.
   let txInstruction = SystemProgram.transfer({
     fromPubkey: feePayer.publicKey,
-    toPubkey: nonceAccountAuth.publicKey,
+    toPubkey: taker.publicKey,
     lamports: LAMPORTS_PER_SOL * 0.01,
   });
+  // Use for get confirmation status.
   txInstruction.keys.push(
     { pubkey: reference.publicKey, isWritable: false, isSigner: false },
   );
