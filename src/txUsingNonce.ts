@@ -6,7 +6,6 @@ import {
   Connection,
   Keypair,
   PublicKey,
-  NonceAccount,
   SystemProgram,
   Transaction,
   LAMPORTS_PER_SOL,
@@ -16,7 +15,6 @@ import {
 import { airdrop } from "./modules/airdrop";
 import { createNonceAccount } from "./modules/createNonceAccount";
 import { getNonceAccount } from "./modules/getNonceAccount";
-import { watchSignatureStatus } from "./modules/watchSignatureStatus";
 
 const main = async () => {
   const connection = new Connection('http://127.0.0.1:8899', 'confirmed');
@@ -46,7 +44,6 @@ const main = async () => {
   );
 
   if (!nonceAccount) throw Error('Nonce Account not found.');
-  console.log('nonceAccount =>', nonceAccount.toString());
 
   // ------------------------------------
   //  Get Nonce
@@ -55,11 +52,12 @@ const main = async () => {
 
   if (!nonceAccountInfo) throw Error('Nonce Account not found.');
   nonce = nonceAccountInfo.nonce;
-  console.log('nonce =>', nonceAccountInfo.nonce);
 
   // ------------------------------------
   //  Use Nonce Account
   // ------------------------------------
+  const startTime = performance.now();
+
   let tx = new Transaction();
 
   // nonce advance must be the first insturction
@@ -88,26 +86,14 @@ const main = async () => {
   tx.sign(
     payer,
     nonceAccountAuth
-  ); /* fee payer + nonce account authority + ... */
+  );
 
   signature = await connection.sendRawTransaction(tx.serialize());
 
-  console.log('payer =>', payer.publicKey.toString());
-  console.log('nonce =>', nonce);
-  console.log('authority =>', nonceAccountAuth.publicKey.toString());
-  console.log('signature =>', signature);
+  const endTime = performance.now();
 
-  // ------------------------------------
-  //  Watch Confirmation Status
-  // ------------------------------------
-  await watchSignatureStatus(
-    connection,  // connection
-    500, // retry
-    'confirmed', // close status
-    reference.publicKey, // publickey
-  );
-  
-  console.log('reference =>', reference.publicKey.toString());
+  console.log('Processing Time =>', endTime - startTime, 'ms');
+  console.log('signature =>', signature);
 };
 
 main();
