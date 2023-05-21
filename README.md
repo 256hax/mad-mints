@@ -6,7 +6,7 @@ We call "Mad Mints".
 Experiment purpose only. Unofficial.
 
 ## Original Source
-Quote by [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1644755048436736001)
+Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1644755048436736001)
 
 ```
 Tip for anyone building a standard (non-compressed) NFT mint system. Instead of hitting the chain directly,
