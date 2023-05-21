@@ -86,7 +86,7 @@ const main = async () => {
 
   tx.add(nonceInstruction);
 
-  const executionTimes = 10;
+  const executionTimes = 10; // Number of times to add instructions.
   for (let i = 0; i < executionTimes; i++) {
     tx.add(txInstruction);
   }
