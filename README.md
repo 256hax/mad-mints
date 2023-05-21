@@ -1,5 +1,6 @@
 # Mad Mints
 Improves the speed of (minting) transactions. With this approach, you'll be able to handle high demand and experience incredible UX.  
+
 We call "Mad Mints".  
 
 Experiment purpose only. Unofficial.
