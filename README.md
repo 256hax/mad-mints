@@ -22,6 +22,9 @@ You'll handle crazy bursts and have incredible UX.
 
 This example codes and documents inspired by above approach.
 
+## Summary
+[Mad Mints by 256hax Twitter](https://twitter.com/256hax/status/1661189677406208001)
+
 ## Documents
 Look at following Documents(Power Point).
 
