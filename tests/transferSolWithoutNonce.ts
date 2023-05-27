@@ -9,26 +9,17 @@ import {
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
 
-// Modules
-import { getSolanaConnection } from "../app/modules/getSolanaConnection";
-import { airdrop } from "../app/modules/airdrop";
-
 describe("Transfer SOL without Nonce", async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
 
-  const payer = Keypair.generate();
+  const payer = provider.wallet.payer;
   const reference = Keypair.generate();
   const taker = Keypair.generate();
   let signature: string;
 
   it("Run", async () => {
-    // ------------------------------------
-    //  Airdrop to Fee Payer
-    // ------------------------------------
-    await airdrop(connection, payer.publicKey);
-
     // ------------------------------------
     //  Start Speed Test
     // ------------------------------------

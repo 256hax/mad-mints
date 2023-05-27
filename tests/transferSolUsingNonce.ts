@@ -14,7 +14,6 @@ import {
 } from "@solana/web3.js";
 
 // Modules
-import { airdrop } from "../app/modules/airdrop";
 import { createNonceAccount } from "../app/modules/createNonceAccount";
 import { getNonceAccount } from "../app/modules/getNonceAccount";
 
@@ -23,10 +22,11 @@ describe("Transfer SOL using Nonce", async () => {
   anchor.setProvider(provider);
   const connection = provider.connection;
 
+  // Nonce Account Authority
   const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
-  const payer = Keypair.generate();
+  const payer = provider.wallet.payer;
   const reference = Keypair.generate();
   const taker = Keypair.generate();
   let nonceAccount: PublicKey | null;
@@ -34,11 +34,6 @@ describe("Transfer SOL using Nonce", async () => {
   let signature: string;
 
   it("Run", async () => {
-    // ------------------------------------
-    //  Airdrop to Fee Payer
-    // ------------------------------------
-    await airdrop(connection, payer.publicKey);
-
     // ------------------------------------
     //  Create Nonce Account
     // ------------------------------------
