@@ -110,7 +110,7 @@ describe('Transfer SOL', async () => {
     //  End Speed Test
     // ------------------------------------
     const endTimeTotal = performance.now();
-    console.log('\n/// Speed Test Result ///////////////////////////////////////////');
+    console.log('\n/// Speed Test Result ////////////////////////////');
     console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
     console.log('signature              =>', signature);
   });

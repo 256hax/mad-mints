@@ -34,7 +34,7 @@ describe('Mint NFT', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('\n/// Speed Check Point ///////////////////////////////////////////');
+    console.log('\n/// Speed Check Point ////////////////////////////');
 
     // ------------------------------------
     //  Create Instruction
@@ -121,7 +121,7 @@ describe('Mint NFT', async () => {
     //  End Speed Test
     // ------------------------------------
     const endTimeTotal = performance.now();
-    console.log('\n/// Speed Test Result ///////////////////////////////////////////');
+    console.log('\n/// Speed Test Result ////////////////////////////');
     console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
     console.log('signature              =>', signature);
   });
