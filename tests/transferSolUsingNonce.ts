@@ -60,7 +60,7 @@ describe('Transfer SOL using Nonce', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('--- Bottleneck in Performance ---------------------------');
+    console.log('--- Speed Bottleneck ------------------------------------');
 
     // ------------------------------------
     //  Create Instruction
