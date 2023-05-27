@@ -1,6 +1,9 @@
 // Lib
 import * as bs58 from "bs58";
 
+// Anchor
+import * as anchor from "@coral-xyz/anchor";
+
 // Solana
 import {
   Keypair,
@@ -11,23 +14,24 @@ import {
 } from "@solana/web3.js";
 
 // Modules
-import { getSolanaConnection } from "../app/modules/getSolanaConnection";
 import { airdrop } from "../app/modules/airdrop";
 import { createNonceAccount } from "../app/modules/createNonceAccount";
 import { getNonceAccount } from "../app/modules/getNonceAccount";
 
 describe("Transfer SOL using Nonce", async () => {
-    const connection = getSolanaConnection();
+  const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
+  anchor.setProvider(provider);
+  const connection = provider.connection;
 
-    const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
-    const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
+  const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
+  const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
-    const payer = Keypair.generate();
-    const reference = Keypair.generate();
-    const taker = Keypair.generate();
-    let nonceAccount: PublicKey | null;
-    let nonce: string;
-    let signature: string;
+  const payer = Keypair.generate();
+  const reference = Keypair.generate();
+  const taker = Keypair.generate();
+  let nonceAccount: PublicKey | null;
+  let nonce: string;
+  let signature: string;
 
   it("Run", async () => {
     // ------------------------------------
