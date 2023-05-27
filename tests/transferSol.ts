@@ -27,7 +27,7 @@ describe('Transfer SOL', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('\n/// Speed Check Point ///////////////////////////////////////////');
+    console.log('\n/// Speed Check Point ////////////////////////////');
 
     // ------------------------------------
     //  Get Latest Blockhash
