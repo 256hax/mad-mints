@@ -27,22 +27,31 @@ describe('Transfer SOL without Nonce', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('--- Speed Bottleneck ------------------------------------');
+    console.log('\n/// Speed Check Point ///////////////////////////////////////////');
 
     // ------------------------------------
     //  Get Latest Blockhash
     // ------------------------------------
+    ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
+    ///////////////////////////////////////
 
     const blockHash = await connection.getLatestBlockhash();
 
+    ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Get Latest Blockhash   =>', endTime - startTime, 'ms');
+    console.log('Get Latest Block Hash  =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
 
     // ------------------------------------
     //  Create Instruction
     // ------------------------------------
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
+
     let tx = new Transaction();
 
     let txInstruction = SystemProgram.transfer({
@@ -62,33 +71,46 @@ describe('Transfer SOL without Nonce', async () => {
     tx.feePayer = payer.publicKey;
     tx.recentBlockhash = blockHash.blockhash;
 
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Create Instructions    =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
     // ------------------------------------
     //  Sign Transaction
     // ------------------------------------
+    ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
+    ///////////////////////////////////////
 
     tx.sign(payer);
 
+    ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Sign Transaction       =>', endTime - startTime, 'ms');
+    console.log('Sign Transactio        =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
 
     // ------------------------------------
     //  Send Transaction
     // ------------------------------------
+    ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
+    ///////////////////////////////////////
 
     signature = await connection.sendRawTransaction(tx.serialize());
 
+    ///////////////////////////////////////
     endTime = performance.now();
     console.log('Send Transaction       =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
 
     // ------------------------------------
     //  End Speed Test
     // ------------------------------------
     const endTimeTotal = performance.now();
-    console.log('--- Summary ---------------------------------------------');
+    console.log('\n/// Speed Test Result ///////////////////////////////////////////');
     console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
     console.log('signature              =>', signature);
   });

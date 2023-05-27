@@ -60,11 +60,16 @@ describe('Transfer SOL using Nonce', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('--- Speed Bottleneck ------------------------------------');
+    console.log('\n/// Speed Check Point ///////////////////////////////////////////');
 
     // ------------------------------------
     //  Create Instruction
     // ------------------------------------
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
+
     let tx = new Transaction();
 
     // nonce advance must be the first insturction.
@@ -95,37 +100,50 @@ describe('Transfer SOL using Nonce', async () => {
     tx.recentBlockhash = nonce;
     tx.feePayer = payer.publicKey;
 
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Create Instructions    =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
     // ------------------------------------
     //  Sign Transaction
     // ------------------------------------
+    ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
+    ///////////////////////////////////////
 
     tx.sign(
       payer,
       nonceAccountAuth
     );
 
+    ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Sign Transaction   =>', endTime - startTime, 'ms');
+    console.log('Sign Transactio        =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
 
     // ------------------------------------
     //  Send Transaction
     // ------------------------------------
+    ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
+    ///////////////////////////////////////
 
     signature = await connection.sendRawTransaction(tx.serialize());
 
+    ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Send Transaction   =>', endTime - startTime, 'ms');
+    console.log('Send Transaction       =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
 
     // ------------------------------------
     //  End Speed Test
     // ------------------------------------
     const endTimeTotal = performance.now();
-    console.log('--- Summary ---------------------------------------------');
-    console.log('Entire             =>', endTimeTotal - startTimeTotal, 'ms');
-    console.log('signature          =>', signature);
+    console.log('\n/// Speed Test Result ///////////////////////////////////////////');
+    console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
+    console.log('signature              =>', signature);
   });
 });
