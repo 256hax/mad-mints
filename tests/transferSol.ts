@@ -9,7 +9,7 @@ import {
   LAMPORTS_PER_SOL,
 } from '@solana/web3.js';
 
-describe('Transfer SOL without Nonce', async () => {
+describe('Transfer SOL', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;

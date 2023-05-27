@@ -16,7 +16,7 @@ import {
 // Modules
 import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 
-describe('Mint NFT without Nonce', async () => {
+describe('Mint NFT', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
