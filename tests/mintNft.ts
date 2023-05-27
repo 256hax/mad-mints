@@ -9,9 +9,6 @@ import {
 
 // Metaplex
 import {
-  Metaplex,
-  keypairIdentity,
-  bundlrStorage,
   toBigNumber,
   OperationOptions,
 } from '@metaplex-foundation/js';
@@ -23,7 +20,7 @@ describe('Mint NFT without Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
-  
+
   // Metaplex
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
