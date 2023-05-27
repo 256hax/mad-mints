@@ -29,7 +29,7 @@ Look at following Documents(Power Point).
 ```
 % anchor test
 
-  Mint NFT without Nonce
+  Mint NFT
 
 /// Speed Check Point ///////////////////////////////////////////
 Get Latest Block Hash  => 11.494064033031464 ms
@@ -54,7 +54,7 @@ Entire                 => 23.147826969623566 ms
 signature              => 21QyNb2eWQgRG8y91eskqZBxp2acmxPkP4Fu2iRf4rBit7KD52V195DJAWwNto2VhdLy2cpDtmXNeAFYAqufM1Vk
     ✔ Run (486ms)
 
-  Transfer SOL without Nonce
+  Transfer SOL
 
 /// Speed Check Point ///////////////////////////////////////////
 Get Latest Block Hash  => 2.205308973789215 ms
