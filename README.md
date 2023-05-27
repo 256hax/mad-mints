@@ -101,4 +101,10 @@ const executionTimes = 10; // Number of times to add instructions.
 ```
 
 ## Note
-When `anchor test`, clone Metaplex Programs from Devnet for Mint NFT.
+- When `anchor test`, clone Metaplex Programs from Devnet for Mint NFT.
+- If you need to use Solana Explorer(Custom RPC URL), following command.
+
+```
+% cd .anchor
+% solana-test-validator
+```
