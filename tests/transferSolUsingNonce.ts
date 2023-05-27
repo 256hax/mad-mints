@@ -3,7 +3,6 @@ import * as bs58 from "bs58";
 
 // Solana
 import {
-  Connection,
   Keypair,
   PublicKey,
   SystemProgram,
@@ -12,13 +11,12 @@ import {
 } from "@solana/web3.js";
 
 // Modules
+import { getSolanaConnection } from "../app/modules/getSolanaConnection";
 import { airdrop } from "../app/modules/airdrop";
 import { createNonceAccount } from "../app/modules/createNonceAccount";
 import { getNonceAccount } from "../app/modules/getNonceAccount";
-import { getSolanaConnection } from "../app/modules/getSolanaConnection";
 
 describe("Transfer SOL using Nonce", async () => {
-  it("Run", async () => {
     const connection = getSolanaConnection();
 
     const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
@@ -31,6 +29,7 @@ describe("Transfer SOL using Nonce", async () => {
     let nonce: string;
     let signature: string;
 
+  it("Run", async () => {
     // ------------------------------------
     //  Airdrop to Fee Payer
     // ------------------------------------

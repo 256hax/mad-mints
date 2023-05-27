@@ -1,6 +1,5 @@
 // Solana
 import {
-  Connection,
   Keypair,
   SystemProgram,
   Transaction,
@@ -8,11 +7,10 @@ import {
 } from "@solana/web3.js";
 
 // Modules
-import { airdrop } from "../app/modules/airdrop";
 import { getSolanaConnection } from "../app/modules/getSolanaConnection";
+import { airdrop } from "../app/modules/airdrop";
 
 describe("Transfer SOL without Nonce", async () => {
-  it("Run", async () => {
     const connection = getSolanaConnection();
 
     const payer = Keypair.generate();
@@ -20,6 +18,7 @@ describe("Transfer SOL without Nonce", async () => {
     const taker = Keypair.generate();
     let signature: string;
 
+  it("Run", async () => {
     // ------------------------------------
     //  Airdrop to Fee Payer
     // ------------------------------------
