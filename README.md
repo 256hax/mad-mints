@@ -3,7 +3,8 @@ Improves the speed of (minting) transactions. With this approach, you'll be able
 
 We call "Mad Mints".  
 
-Experimental purpose only. Codes and documents are unofficial. My personal opinion.
+Experimental purpose only. Codes and documents are unofficial. My personal opinion.  
+I try to write the codes in a single file to make it easy to understand, without dividing it into modules.
 
 ## Original Source
 Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1644755048436736001)
