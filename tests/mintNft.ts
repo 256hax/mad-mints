@@ -3,8 +3,6 @@ import * as anchor from '@coral-xyz/anchor';
 
 // Solana
 import {
-  // Connection,
-  // clusterApiUrl,
   Keypair,
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
@@ -18,31 +16,35 @@ import {
   OperationOptions,
 } from '@metaplex-foundation/js';
 
+// Modules
+import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
+
 describe('Mint NFT without Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
-
+  
   // Metaplex
-  const metaplex = Metaplex.make(connection)
-    .use(keypairIdentity(provider.wallet.payer))
-    .use(bundlrStorage({
-      address: 'https://devnet.bundlr.network',
-      providerUrl: 'https://api.devnet.solana.com',
-      timeout: 60000,
-    }));
+  const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
   const payer = provider.wallet.payer;
 
   it('Run', async () => {
     // ------------------------------------
-    //  Mint NFT
+    //  Start Speed Test
+    // ------------------------------------
+    const startTimeTotal = performance.now();
+    let startTime: number;
+    let endTime: number;
+
+    console.log('--- Speed Bottleneck ------------------------------------');
+
+    // ------------------------------------
+    //  Create Instruction
     // ------------------------------------
     // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
 
-    // Create a transaction builder to create the NFT.
-    // Ref: builders: https://metaplex-foundation.github.io/js/classes/js.NftClient.html#builders
     const operationOptions: OperationOptions = {
       commitment: 'confirmed',
     };

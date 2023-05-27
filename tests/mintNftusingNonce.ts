@@ -10,14 +10,10 @@ import {
   PublicKey,
   SystemProgram,
   Transaction,
-  sendAndConfirmTransaction,
 } from '@solana/web3.js';
 
 // Metaplex
 import {
-  Metaplex,
-  keypairIdentity,
-  bundlrStorage,
   toBigNumber,
   OperationOptions,
 } from '@metaplex-foundation/js';
@@ -25,6 +21,7 @@ import {
 // Modules
 import { createNonceAccount } from '../app/modules/createNonceAccount';
 import { getNonceAccount } from '../app/modules/getNonceAccount';
+import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 
 describe('Mint NFT using Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -36,13 +33,7 @@ describe('Mint NFT using Nonce', async () => {
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
   // Metaplex
-  const metaplex = Metaplex.make(connection)
-    .use(keypairIdentity(provider.wallet.payer))
-    .use(bundlrStorage({
-      address: 'https://devnet.bundlr.network',
-      providerUrl: 'https://api.devnet.solana.com',
-      timeout: 60000,
-    }));
+  const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
   const payer = provider.wallet.payer;
   let nonceAccount: PublicKey | null;
