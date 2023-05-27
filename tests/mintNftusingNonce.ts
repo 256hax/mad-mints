@@ -62,8 +62,22 @@ describe('Mint NFT using Nonce', async () => {
     nonce = nonceAccountInfo.nonce;
 
     // ------------------------------------
+    //  Start Speed Test
+    // ------------------------------------
+    const startTimeTotal = performance.now();
+    let startTime: number;
+    let endTime: number;
+
+    console.log('\n/// Speed Check Point ///////////////////////////////////////////');
+
+    // ------------------------------------
     //  Create Instruction
     // ------------------------------------
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
+
     let tx = new Transaction();
 
     // Nonce
@@ -77,7 +91,7 @@ describe('Mint NFT using Nonce', async () => {
     const mintKeypair = Keypair.generate();
 
     const operationOptions: OperationOptions = {
-      commitment: 'confirmed',
+      commitment: 'confirmed', // If you fail to create Mint Account, set 'finalized' status.
     };
 
     const uri = 'https://arweave.net/rZyxNClGX937dETjo1Pqd8L02uojj9-xuuzqw3K49po'; // Metadata JSON
@@ -99,7 +113,7 @@ describe('Mint NFT using Nonce', async () => {
     // nonce advance must be the first insturction.
     tx.add(nonceInstruction);
     // transactionBuilder have 2 array. Add all of array to tx.
-    nftInstructions.forEach(function(insturction) {
+    nftInstructions.forEach(function (insturction) {
       tx.add(insturction)
     });
 
@@ -107,22 +121,51 @@ describe('Mint NFT using Nonce', async () => {
     tx.recentBlockhash = nonce;
     tx.feePayer = payer.publicKey;
 
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Create Instructions    =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
     // ------------------------------------
     //  Sign Transaction
     // ------------------------------------
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
+
     tx.sign(
       payer,
       nonceAccountAuth,
       mintKeypair,
     );
 
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Sign Transactio        =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
     // ------------------------------------
     //  Send Transaction
     // ------------------------------------
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
+
     signature = await connection.sendRawTransaction(tx.serialize());
 
-    console.log('mintKeypair.publicKey =>', mintKeypair.publicKey.toString());
-    console.log('payer.publicKey =>', payer.publicKey.toString());
-    console.log('signature =>', signature);
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Send Transaction       =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
+    // ------------------------------------
+    //  End Speed Test
+    // ------------------------------------
+    const endTimeTotal = performance.now();
+    console.log('\n/// Speed Test Result ///////////////////////////////////////////');
+    console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
+    console.log('signature              =>', signature);
   });
 });
