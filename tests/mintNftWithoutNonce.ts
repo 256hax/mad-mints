@@ -1,5 +1,5 @@
 // Anchor
-import * as anchor from "@coral-xyz/anchor";
+import * as anchor from '@coral-xyz/anchor';
 
 // Solana
 import {
@@ -16,16 +16,14 @@ import {
   bundlrStorage,
   toBigNumber,
   OperationOptions,
-} from "@metaplex-foundation/js";
+} from '@metaplex-foundation/js';
 
-describe("Mint NFT without Nonce", async () => {
+describe('Mint NFT without Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
-
   const connection = provider.connection;
-  // ------------------------------------
-  //  Make Metaplex
-  // ------------------------------------
+
+  // Metaplex
   const metaplex = Metaplex.make(connection)
     .use(keypairIdentity(provider.wallet.payer))
     .use(bundlrStorage({
@@ -34,7 +32,7 @@ describe("Mint NFT without Nonce", async () => {
       timeout: 60000,
     }));
 
-  it("Run", async () => {
+  it('Run', async () => {
     // ------------------------------------
     //  Mint NFT
     // ------------------------------------

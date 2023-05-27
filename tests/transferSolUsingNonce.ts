@@ -1,8 +1,8 @@
 // Lib
-import * as bs58 from "bs58";
+import * as bs58 from 'bs58';
 
 // Anchor
-import * as anchor from "@coral-xyz/anchor";
+import * as anchor from '@coral-xyz/anchor';
 
 // Solana
 import {
@@ -11,13 +11,13 @@ import {
   SystemProgram,
   Transaction,
   LAMPORTS_PER_SOL,
-} from "@solana/web3.js";
+} from '@solana/web3.js';
 
 // Modules
-import { createNonceAccount } from "../app/modules/createNonceAccount";
-import { getNonceAccount } from "../app/modules/getNonceAccount";
+import { createNonceAccount } from '../app/modules/createNonceAccount';
+import { getNonceAccount } from '../app/modules/getNonceAccount';
 
-describe("Transfer SOL using Nonce", async () => {
+describe('Transfer SOL using Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
@@ -33,7 +33,7 @@ describe("Transfer SOL using Nonce", async () => {
   let nonce: string;
   let signature: string;
 
-  it("Run", async () => {
+  it('Run', async () => {
     // ------------------------------------
     //  Create Nonce Account
     // ------------------------------------

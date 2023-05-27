@@ -1,5 +1,5 @@
 // Anchor
-import * as anchor from "@coral-xyz/anchor";
+import * as anchor from '@coral-xyz/anchor';
 
 // Solana
 import {
@@ -7,9 +7,9 @@ import {
   SystemProgram,
   Transaction,
   LAMPORTS_PER_SOL,
-} from "@solana/web3.js";
+} from '@solana/web3.js';
 
-describe("Transfer SOL without Nonce", async () => {
+describe('Transfer SOL without Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
@@ -19,7 +19,7 @@ describe("Transfer SOL without Nonce", async () => {
   const taker = Keypair.generate();
   let signature: string;
 
-  it("Run", async () => {
+  it('Run', async () => {
     // ------------------------------------
     //  Start Speed Test
     // ------------------------------------
