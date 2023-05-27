@@ -78,7 +78,7 @@ describe('Mint NFT without Nonce', async () => {
     );
 
     console.log('mintKeypair.publicKey =>', mintKeypair.publicKey.toString());
-    console.log('wallet.publicKey =>', payer.publicKey.toString());
+    console.log('payer.publicKey =>', payer.publicKey.toString());
     console.log('signature =>', signature);
   });
 });
