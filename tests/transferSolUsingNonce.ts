@@ -67,7 +67,7 @@ describe('Transfer SOL using Nonce', async () => {
     // ------------------------------------
     let tx = new Transaction();
 
-    // nonce advance must be the first insturction
+    // nonce advance must be the first insturction.
     let nonceInstruction = SystemProgram.nonceAdvance({
       noncePubkey: nonceAccount,
       authorizedPubkey: nonceAccountAuth.publicKey,
@@ -91,7 +91,7 @@ describe('Transfer SOL using Nonce', async () => {
       tx.add(txInstruction);
     }
 
-    // assign `nonce` as recentBlockhash
+    // assign `nonce` as recentBlockhash.
     tx.recentBlockhash = nonce;
     tx.feePayer = payer.publicKey;
 

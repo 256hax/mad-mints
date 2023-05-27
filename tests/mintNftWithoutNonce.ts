@@ -38,10 +38,10 @@ describe('Mint NFT without Nonce', async () => {
     // ------------------------------------
     //  Mint NFT
     // ------------------------------------
-    // The mint needs to sign the transaction, so we generate a new keypair for it
+    // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
 
-    // Create a transaction builder to create the NFT
+    // Create a transaction builder to create the NFT.
     // Ref: builders: https://metaplex-foundation.github.io/js/classes/js.NftClient.html#builders
     const operationOptions: OperationOptions = {
       commitment: 'confirmed',
@@ -66,8 +66,8 @@ describe('Mint NFT without Nonce', async () => {
     const latestBlockhash = await connection.getLatestBlockhash()
     const transaction = await transactionBuilder.toTransaction(latestBlockhash)
 
-    // Partially sign the transaction, as the shop and the mint
-    // The account is also a required signer, but they'll sign it with their wallet after we return it
+    // Partially sign the transaction, as the shop and the mint.
+    // The account is also a required signer, but they'll sign it with their wallet after we return it.
     // transaction.partialSign(wallet);
     transaction.sign(payer);
 
