@@ -98,7 +98,7 @@ describe('Mint NFT', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Sign Transactio        =>', endTime - startTime, 'ms');
+    console.log('Sign Transaction       =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 
     ///////////////////////////////////////

@@ -120,7 +120,7 @@ describe('Transfer SOL using Nonce', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
-    console.log('Sign Transactio        =>', endTime - startTime, 'ms');
+    console.log('Sign Transaction       =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 
     // ------------------------------------
