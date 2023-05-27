@@ -3,20 +3,10 @@ Improves the speed of (minting) transactions. With this approach, you'll be able
 
 We call "Mad Mints".  
 
-Experiment purpose only. Unofficial.
+Experimental purpose only. Codes and documents are unofficial. My personal opinion.
 
 ## Original Source
 Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1644755048436736001)
-
-```
-Tip for anyone building a standard (non-compressed) NFT mint system. Instead of hitting the chain directly,
-
-- allocate 10k durable nonces
-- use web2 infra to buffer txs into a queue
-- async process the queue one by one
-
-You'll handle crazy bursts and have incredible UX.
-```
 
 ![Tweet](https://github.com/256hax/mad-mints/blob/main/docs/screenshot/armani-tweet.png?raw=true)
 
@@ -32,43 +22,83 @@ Look at following Documents(Power Point).
 
 ## Setup
 ```
-% npm i
+% yarn
 ```
 
 ## Run (How to speed test)
-First terminal:
 ```
-% solana-test-validator
+% anchor test
+
+  Mint NFT without Nonce
+
+/// Speed Check Point ///////////////////////////////////////////
+Get Latest Block Hash  => 11.494064033031464 ms
+Create Instructions    => 13.724269986152649 ms
+Sign Transactio        => 16.91003704071045 ms
+Send Transaction       => 299.94438004493713 ms
+
+/// Speed Test Result ///////////////////////////////////////////
+Entire                 => 342.9058340191841 ms
+signature              => hQepRrm8vEaQCkeaTQtdcnCE4wCMwsJrsQrKHHiVSPDshFQ2LjSydvdRuYgrRU5imbZBMhRNsmZGYxg9HsFkxVP
+    ✔ Run (343ms)
+
+  Mint NFT using Nonce
+
+/// Speed Check Point ///////////////////////////////////////////
+Create Instructions    => 3.5406439900398254 ms
+Sign Transactio        => 4.094771027565002 ms
+Send Transaction       => 15.202999949455261 ms
+
+/// Speed Test Result ///////////////////////////////////////////
+Entire                 => 23.147826969623566 ms
+signature              => 21QyNb2eWQgRG8y91eskqZBxp2acmxPkP4Fu2iRf4rBit7KD52V195DJAWwNto2VhdLy2cpDtmXNeAFYAqufM1Vk
+    ✔ Run (486ms)
+
+  Transfer SOL without Nonce
+
+/// Speed Check Point ///////////////////////////////////////////
+Get Latest Block Hash  => 2.205308973789215 ms
+Create Instructions    => 0.2555369734764099 ms
+Sign Transactio        => 1.9137240052223206 ms
+Send Transaction       => 4.917131006717682 ms
+
+/// Speed Test Result ///////////////////////////////////////////
+Entire                 => 9.806727051734924 ms
+signature              => 3HBgC6HMyu9frGZH2wMmwMZm3vxu4PbQkvszwBcvCC6woPcR5F8bBcbHbVEvX2vtj1ztMohpeczwuGH5UEmkBmLB
+    ✔ Run
+
+  Transfer SOL using Nonce
+
+/// Speed Check Point ///////////////////////////////////////////
+Create Instructions    => 0.1617879867553711 ms
+Sign Transactio        => 4.116273999214172 ms
+Send Transaction       => 8.314706981182098 ms
+
+/// Speed Test Result ///////////////////////////////////////////
+Entire                 => 12.882879972457886 ms
+signature              => 56yBErmZVY6iXd4pEyB7qwjYmp6PkAPV4WZkcBvBv9DrZ9z921Zvip6fPVniqsLtQnhLTMYFzT2jErs18vj7tT5V
+    ✔ Run (430ms)
+
+
+  4 passing (1s)
+
+✨  Done in 3.92s.
 ```
 
-Second terminal:
-```
-% cd src
-% ts-node txUsingNonce.ts
+## Files
+- mintNft.ts: Mint NFT
+- mintNftusingNonce.ts: Mint NFT using Durable Nonce Account
+- transferSol.ts: Transfer SOL
+- transferSolUsingNonce.ts: Transfer SOL using Durable Nonce Account
 
---- Bottleneck in Performance ---------------------------
-Sign Transaction   => 4.022541046142578 ms
-Send Transaction   => 8.915582060813904 ms
---- Summary ---------------------------------------------
-Entire             => 13.952328085899353 ms
-signature          => 3ELY4VJNxejf6pBvW5fiHreKrzpUJig4e4jNzMJWw8rGHWL6hkbcnwxJy1JjXqnuHKf1sWnGeoDB6EDvUHZ1Hz16
-```
+## Adjust Config
+You can change number of times to add instructions. Default: 10
+- transferSol.ts.ts
+- transferSolUsingNonce
 
-Third terminal:
 ```
-% cd src
-% ts-node txWithoutNonce.ts
-
---- Bottleneck in Performance ---------------------------
-Get Latest Blockhash   => 1.366873025894165 ms
-Sign Transaction       => 18.401047945022583 ms
-Send Transaction       => 7.445399045944214 ms
---- Summary ---------------------------------------------
-Entire                 => 28.64971899986267 ms
-signature              => 2ykVMFuPhw9cFyJcU5v4gfHdp7ETy6cVUBuk3HDaCTUsyuTqF4GimGVcQeyKHovp8WtYM6FcZdMBkxtcsKGqrP2f
+const executionTimes = 10; // Number of times to add instructions.
 ```
 
-- txUsingNonce.ts: Mad Mints
-- txWithoutNonce.ts: Standard
-
-Adjust "const executionTimes" then check speed test result.
+## Note
+When `anchor test`, clone Metaplex Programs from Devnet for Mint NFT.
