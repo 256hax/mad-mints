@@ -32,6 +32,8 @@ describe('Mint NFT without Nonce', async () => {
       timeout: 60000,
     }));
 
+  const payer = provider.wallet.payer;
+
   it('Run', async () => {
     // ------------------------------------
     //  Mint NFT
@@ -67,17 +69,16 @@ describe('Mint NFT without Nonce', async () => {
     // Partially sign the transaction, as the shop and the mint
     // The account is also a required signer, but they'll sign it with their wallet after we return it
     // transaction.partialSign(wallet);
-    const wallet = provider.wallet.payer;
-    transaction.sign(wallet);
+    transaction.sign(payer);
 
     const signature = await sendAndConfirmTransaction(
       connection,
       transaction,
-      [wallet, mintKeypair]
+      [payer, mintKeypair]
     );
 
     console.log('mintKeypair.publicKey =>', mintKeypair.publicKey.toString());
-    console.log('wallet.publicKey =>', wallet.publicKey.toString());
+    console.log('wallet.publicKey =>', payer.publicKey.toString());
     console.log('signature =>', signature);
   });
 });
