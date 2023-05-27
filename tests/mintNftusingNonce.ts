@@ -107,8 +107,10 @@ describe('Mint NFT using Nonce', async () => {
 
     // nonce advance must be the first insturction.
     tx.add(nonceInstruction);
-    tx.add(nftInstructions[0]);
-    tx.add(nftInstructions[1]);
+    // transactionBuilder have 2 array. Add all of array to tx.
+    nftInstructions.forEach(function(insturction) {
+      tx.add(insturction)
+    });
 
     // assign `nonce` as recentBlockhash
     tx.recentBlockhash = nonce;
