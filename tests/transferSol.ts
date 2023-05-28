@@ -63,8 +63,8 @@ describe('Transfer SOL', async () => {
       { pubkey: reference.publicKey, isWritable: false, isSigner: false },
     );
 
-    const executionTimes = 10; // Number of times to add instructions.
-    for (let i = 0; i < executionTimes; i++) {
+    const addNumberOfInstructions = 10; // Number of times to add instructions.
+    for (let i = 0; i < addNumberOfInstructions; i++) {
       tx.add(txInstruction);
     }
 
@@ -73,6 +73,7 @@ describe('Transfer SOL', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
+    console.log('Number of Instructions =>', addNumberOfInstructions);
     console.log('Create Instructions    =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 

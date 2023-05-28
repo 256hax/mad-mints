@@ -91,8 +91,8 @@ describe('Transfer SOL using Nonce', async () => {
 
     tx.add(nonceInstruction);
 
-    const executionTimes = 10; // Number of times to add instructions.
-    for (let i = 0; i < executionTimes; i++) {
+    const addNumberOfInstructions = 10; // Number of times to add instructions.
+    for (let i = 0; i < addNumberOfInstructions; i++) {
       tx.add(txInstruction);
     }
 
@@ -102,6 +102,7 @@ describe('Transfer SOL using Nonce', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
+    console.log('Number of Instructions =>', addNumberOfInstructions);
     console.log('Create Instructions    =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 
