@@ -13,7 +13,8 @@ Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1
 He found this approach and named "Mad Mints".
 
 ## Summary
-[Mad Mints by 256hax Twitter](https://twitter.com/256hax/status/1661189677406208001)
+- [Mint NFT conclusion by 256hax Twitter](https://twitter.com/256hax/status/1662963913078734850)
+- [Transfer SOL conclusion by 256hax Twitter](https://twitter.com/256hax/status/1661189677406208001)
 
 ## Documents
 Look at following Documents(Power Point).
