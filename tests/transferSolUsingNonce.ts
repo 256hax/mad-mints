@@ -32,8 +32,8 @@ describe('Transfer SOL using Nonce', async () => {
   let nonce: string;
   let signature: string;
 
-  const addNumberOfAccouns = 1; // Number of times to add accounts.
-  const addNumberOfInstructions = 1; // Number of times to add instructions.
+  const addNumberOfAccouns = 10; // Number of times to add accounts.
+  const addNumberOfInstructions = 10; // Number of times to add instructions.
 
   it('Run', async () => {
     // ------------------------------------
