@@ -15,9 +15,11 @@ describe('Transfer SOL', async () => {
   const connection = provider.connection;
 
   const payer = provider.wallet.payer;
-  const reference = Keypair.generate();
   const taker = Keypair.generate();
   let signature: string;
+
+  const addNumberOfAccouns = 1; // Number of times to add accounts.
+  const addNumberOfInstructions = 1; // Number of times to add instructions.
 
   it('Run', async () => {
     // ------------------------------------
@@ -54,16 +56,21 @@ describe('Transfer SOL', async () => {
 
     let tx = new Transaction();
 
+    // Add Accounts to Instruction
     let txInstruction = SystemProgram.transfer({
       fromPubkey: payer.publicKey,
       toPubkey: taker.publicKey,
       lamports: LAMPORTS_PER_SOL * 0.01,
     });
-    txInstruction.keys.push(
-      { pubkey: reference.publicKey, isWritable: false, isSigner: false },
-    );
 
-    const addNumberOfInstructions = 10; // Number of times to add instructions.
+    // Add Instructions
+    for (let i = 0; i < addNumberOfAccouns; i++) {
+      const reference = Keypair.generate();
+      txInstruction.keys.push(
+        { pubkey: reference.publicKey, isWritable: false, isSigner: false },
+      );
+    }
+
     for (let i = 0; i < addNumberOfInstructions; i++) {
       tx.add(txInstruction);
     }
@@ -73,6 +80,7 @@ describe('Transfer SOL', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
+    console.log('Number of Accounts     =>', addNumberOfAccouns);
     console.log('Number of Instructions =>', addNumberOfInstructions);
     console.log('Create Instructions    =>', endTime - startTime, 'ms');
     ///////////////////////////////////////

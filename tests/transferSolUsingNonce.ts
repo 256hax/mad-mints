@@ -22,16 +22,18 @@ describe('Transfer SOL using Nonce', async () => {
   anchor.setProvider(provider);
   const connection = provider.connection;
 
-  // Nonce Account Authority
+  // Nonce Account Authority. Change to your key.
   const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
   const payer = provider.wallet.payer;
-  const reference = Keypair.generate();
   const taker = Keypair.generate();
   let nonceAccount: PublicKey | null;
   let nonce: string;
   let signature: string;
+
+  const addNumberOfAccouns = 1; // Number of times to add accounts.
+  const addNumberOfInstructions = 1; // Number of times to add instructions.
 
   it('Run', async () => {
     // ------------------------------------
@@ -77,6 +79,7 @@ describe('Transfer SOL using Nonce', async () => {
       noncePubkey: nonceAccount,
       authorizedPubkey: nonceAccountAuth.publicKey,
     });
+    tx.add(nonceInstruction);
 
     // after that, you do what you really want to do, here we append a transfer instruction as an example.
     let txInstruction = SystemProgram.transfer({
@@ -84,14 +87,16 @@ describe('Transfer SOL using Nonce', async () => {
       toPubkey: taker.publicKey,
       lamports: LAMPORTS_PER_SOL * 0.01,
     });
-    // Use for get confirmation status.
-    txInstruction.keys.push(
-      { pubkey: reference.publicKey, isWritable: false, isSigner: false },
-    );
 
-    tx.add(nonceInstruction);
+    // Add Accounts to Instruction
+    for (let i = 0; i < addNumberOfAccouns; i++) {
+      const reference = Keypair.generate();
+      txInstruction.keys.push(
+        { pubkey: reference.publicKey, isWritable: false, isSigner: false },
+      );
+    }
 
-    const addNumberOfInstructions = 10; // Number of times to add instructions.
+    // Add Instructions
     for (let i = 0; i < addNumberOfInstructions; i++) {
       tx.add(txInstruction);
     }
@@ -102,6 +107,7 @@ describe('Transfer SOL using Nonce', async () => {
 
     ///////////////////////////////////////
     endTime = performance.now();
+    console.log('Number of Accounts     =>', addNumberOfAccouns);
     console.log('Number of Instructions =>', addNumberOfInstructions);
     console.log('Create Instructions    =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
