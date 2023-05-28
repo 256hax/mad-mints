@@ -13,6 +13,10 @@ wallet = "~/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+transferSol = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/transferSol.ts"
+transferSolUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/transferSolUsingNonce.ts"
+mintNft = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintNft.ts"
+mintNftUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintNftUsingNonce.ts"
 
 # Set source RPC for clone
 [test.validator]
