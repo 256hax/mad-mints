@@ -122,7 +122,8 @@ describe('10K Mint NFTs using Nonce', async () => {
     // ------------------------------------
     const endTimeTotal = performance.now();
     console.log('\n/// Speed Test Results ///////////////////////////');
-    console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
-    console.log('payer                  =>', payer.publicKey.toString());
+    console.log('Entire                   =>', endTimeTotal - startTimeTotal, 'ms');
+    console.log('Number of Nonce Acctouns =>', numberOfNonceAccounts);
+    console.log('payer                    =>', payer.publicKey.toString());
   });
 });
