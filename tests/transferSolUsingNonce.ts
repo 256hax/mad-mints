@@ -60,7 +60,7 @@ describe('Transfer SOL using Nonce', async () => {
     let startTime: number;
     let endTime: number;
 
-    console.log('\n/// Speed Check Point ////////////////////////////');
+    console.log('\n/// Speed Check Points ///////////////////////////');
 
     // ------------------------------------
     //  Create Instruction
@@ -142,7 +142,7 @@ describe('Transfer SOL using Nonce', async () => {
     //  End Speed Test
     // ------------------------------------
     const endTimeTotal = performance.now();
-    console.log('\n/// Speed Test Result ////////////////////////////');
+    console.log('\n/// Speed Test Results ///////////////////////////');
     console.log('Entire                 =>', endTimeTotal - startTimeTotal, 'ms');
     console.log('signature              =>', signature);
   });
