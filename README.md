@@ -3,14 +3,14 @@ Improves the speed of (minting) transactions. With this approach, you'll be able
 
 We call "Mad Mints".  
 
-Experimental purpose only. Codes and documents are unofficial. My personal opinion.  
+Experimental purpose only. Codes and documents are unofficial, in my opinion.
 
 ## Original Source
 Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1644755048436736001)
 
 ![Tweet](https://github.com/256hax/mad-mints/blob/main/docs/screenshot/armani-tweet.png?raw=true)
 
-This example codes and documents inspired by above approach.
+He found this approach and named "Mad Mints".
 
 ## Summary
 [Mad Mints by 256hax Twitter](https://twitter.com/256hax/status/1661189677406208001)
@@ -52,6 +52,14 @@ Second terminal:
 % anchor run mintNftUsingNonce
 ```
 
+```
+% anchor run 10kMintNfts
+```
+
+```
+% anchor run 10kMintNftsUsingNonce
+```
+
 ## Files
 - mintNft.ts: Mint NFT
 - mintNftUsingNonce.ts: Mint NFT using Durable Nonce Account
@@ -59,13 +67,23 @@ Second terminal:
 - transferSolUsingNonce.ts: Transfer SOL using Durable Nonce Account
 
 ## Adjust Config
-You can change number of times to add accounts/instructions.
+### Number of times to add accounts/instructions
 - transferSol.ts.ts
 - transferSolUsingNonce
 
 ```
   const addNumberOfAccouns = 1; // Number of times to add accounts.
   const addNumberOfInstructions = 1; // Number of times to add instructions.
+```
+
+### Number of times to creation Nonce Account and mint NFTs
+- 10kMintNfts.ts
+- 10kMintNftsUsingNonce.ts
+
+```
+  // Nonce Account creation and minting times.
+  //  e.g. 10K = 10_000
+  const numberOfNonceAccounts = 10;
 ```
 
 ## Note
