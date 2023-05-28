@@ -17,6 +17,7 @@ import { createNonceAccount } from '../app/modules/createNonceAccount';
 import { getNonceAccount } from '../app/modules/getNonceAccount';
 import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 import { createMetaplexTransactionBuilder } from '../app/modules/createMetaplexTransactionBuilder';
+import { progressBar } from '../app/modules/progressBar';
 
 describe('10K Mint NFTs using Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -35,10 +36,14 @@ describe('10K Mint NFTs using Nonce', async () => {
 
   // Nonce Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 10;
+  const numberOfNonceAccounts = 100;
 
   it('Run', async () => {
+    console.log('Creating Nonce Account...');
+    
     for (let i = 0; i <= numberOfNonceAccounts; i++) {
+      progressBar(i, numberOfNonceAccounts);
+
       // ------------------------------------
       //  Create Nonce Account
       // ------------------------------------
@@ -71,6 +76,8 @@ describe('10K Mint NFTs using Nonce', async () => {
     const startTimeTotal = performance.now();
 
     for (let i = 0; i <= numberOfNonceAccounts; i++) {
+      progressBar(i, numberOfNonceAccounts);
+
       const nonceAccount = nonceAccounts[i].publickey;
       const nonce = nonceAccounts[i].nonce;
 

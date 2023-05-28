@@ -10,6 +10,7 @@ import {
 // Modules
 import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 import { createMetaplexTransactionBuilder } from '../app/modules/createMetaplexTransactionBuilder';
+import { progressBar } from '../app/modules/progressBar';
 
 describe('10K Mint NFTs', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -23,7 +24,7 @@ describe('10K Mint NFTs', async () => {
 
   // Nonce Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 10;
+  const numberOfNonceAccounts = 100;
 
   it('Run', async () => {
     // ------------------------------------
@@ -32,6 +33,8 @@ describe('10K Mint NFTs', async () => {
     const startTimeTotal = performance.now();
 
     for (let i = 0; i <= numberOfNonceAccounts; i++) {
+      progressBar(i, numberOfNonceAccounts);
+      
       // ------------------------------------
       //  Create Instruction
       // ------------------------------------
