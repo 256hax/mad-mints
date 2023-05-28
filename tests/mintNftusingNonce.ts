@@ -23,7 +23,7 @@ describe('Mint NFT using Nonce', async () => {
   anchor.setProvider(provider);
   const connection = provider.connection;
 
-  // Nonce Account Authority
+  // Nonce Account Authority. Change to your key.
   const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
@@ -33,7 +33,6 @@ describe('Mint NFT using Nonce', async () => {
   const payer = provider.wallet.payer;
   let nonceAccount: PublicKey | null;
   let nonce: string;
-  const reference = Keypair.generate();
   let signature: string;
 
   it('Run', async () => {
