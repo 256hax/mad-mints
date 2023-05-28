@@ -72,8 +72,8 @@ Second terminal:
 - transferSolUsingNonce
 
 ```
-  const addNumberOfAccouns = 1; // Number of times to add accounts.
-  const addNumberOfInstructions = 1; // Number of times to add instructions.
+const addNumberOfAccouns = 1; // Number of times to add accounts.
+const addNumberOfInstructions = 1; // Number of times to add instructions.
 ```
 
 ### Number of times to creation Nonce Account and mint NFTs
@@ -81,13 +81,13 @@ Second terminal:
 - 10kMintNftsUsingNonce.ts
 
 ```
-  // Nonce Account creation and minting times.
-  //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 10;
+// Nonce Account creation and minting times.
+//  e.g. 10K = 10_000
+const numberOfNonceAccounts = 10;
 ```
 
 ## Note
 - When `anchor test`, clone Metaplex Programs from Devnet for Mint NFT. If you got a below error, run `anchor test`.
 ```
-     Error: failed to send transaction: Transaction simulation failed: Attempt to load a program that does not exist
+Error: failed to send transaction: Transaction simulation failed: Attempt to load a program that does not exist
 ```
