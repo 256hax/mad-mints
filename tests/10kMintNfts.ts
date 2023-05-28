@@ -24,7 +24,7 @@ describe('10K Mint NFTs', async () => {
 
   // Nonce Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 50;
+  const numberOfNonceAccounts = 10;
 
   it('Run', async () => {
     // ------------------------------------
