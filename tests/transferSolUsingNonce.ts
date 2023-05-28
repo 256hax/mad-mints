@@ -89,7 +89,7 @@ describe('Transfer SOL using Nonce', async () => {
     });
 
     // Add Accounts to Instruction
-    for (let i = 0; i < addNumberOfAccouns; i++) {
+    for (let i = 0; i <= addNumberOfAccouns; i++) {
       const reference = Keypair.generate();
       txInstruction.keys.push(
         { pubkey: reference.publicKey, isWritable: false, isSigner: false },
@@ -97,7 +97,7 @@ describe('Transfer SOL using Nonce', async () => {
     }
 
     // Add Instructions
-    for (let i = 0; i < addNumberOfInstructions; i++) {
+    for (let i = 0; i <= addNumberOfInstructions; i++) {
       tx.add(txInstruction);
     }
 
