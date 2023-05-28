@@ -36,7 +36,7 @@ describe('10K Mint NFTs using Nonce', async () => {
 
   // Nonce Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 100;
+  const numberOfNonceAccounts = 50;
 
   it('Run', async () => {
     console.log('Creating Nonce Account...');
@@ -74,6 +74,8 @@ describe('10K Mint NFTs using Nonce', async () => {
     //  Start Speed Test
     // ------------------------------------
     const startTimeTotal = performance.now();
+
+    console.log('\nMint NFTs...');
 
     for (let i = 0; i <= numberOfNonceAccounts; i++) {
       progressBar(i, numberOfNonceAccounts);
