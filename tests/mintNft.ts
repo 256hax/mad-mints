@@ -7,14 +7,9 @@ import {
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
 
-// Metaplex
-import {
-  toBigNumber,
-  OperationOptions,
-} from '@metaplex-foundation/js';
-
 // Modules
 import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
+import { createMetaplexTransactionBuilder } from '../app/modules/createMetaplexTransactionBuilder';
 
 describe('Mint NFT', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -56,28 +51,10 @@ describe('Mint NFT', async () => {
     startTime = performance.now();
     ///////////////////////////////////////
 
+    // NFT
     // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
-
-    const operationOptions: OperationOptions = {
-      commitment: 'confirmed', // If you fail to create Mint Account, set 'finalized' status.
-    };
-
-    const uri = 'https://arweave.net/rZyxNClGX937dETjo1Pqd8L02uojj9-xuuzqw3K49po'; // Metadata JSON
-    const transactionBuilder = await metaplex
-      .nfts()
-      .builders()
-      .create(
-        {
-          uri: uri,
-          name: 'My NFT',
-          sellerFeeBasisPoints: 500, // Represents 5.00%.
-          maxSupply: toBigNumber(1),
-          useNewMint: mintKeypair, // we pass our mint in as the new mint to use
-        },
-        operationOptions
-      );
-
+    const transactionBuilder = await createMetaplexTransactionBuilder(metaplex, mintKeypair);
     // Convert to transaction
     const transaction = await transactionBuilder.toTransaction(latestBlockhash)
 
