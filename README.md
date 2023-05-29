@@ -96,3 +96,6 @@ const numberOfNonceAccounts = 10;
 ```
 Error: failed to send transaction: Transaction simulation failed: Attempt to load a program that does not exist
 ```
+
+## TODO
+- Add collection address and verify collection NFT. I'm struggling with the timing of execution.
