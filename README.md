@@ -26,6 +26,8 @@ Look at following Documents(Power Point).
 % yarn
 ```
 
+[Anchor - installation](https://www.anchor-lang.com/docs/installation)
+
 ## Run (How to speed test)
 First terminal:
 ```
