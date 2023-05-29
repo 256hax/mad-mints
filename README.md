@@ -64,6 +64,8 @@ Second terminal:
 ## Files
 - mintNft.ts: Mint NFT
 - mintNftUsingNonce.ts: Mint NFT using Durable Nonce Account
+- 10kMintNfts.ts: Multiple mint NFTs(minting 10K need to long time. adjust minting times)
+- 10kMintNftsUsingNonce.ts: Multiple mint NFTs using Durable Nonce Account(minting 10K need to long time. adjust minting times)
 - transferSol.ts: Transfer SOL
 - transferSolUsingNonce.ts: Transfer SOL using Durable Nonce Account
 
