@@ -19,8 +19,10 @@ export const createMetaplexTransactionBuilder = async (
     commitment: 'confirmed', // If you fail to create Mint Account, set 'finalized' status.
   };
 
+  // Fixed value for speed test.
   const uri = 'https://arweave.net/rZyxNClGX937dETjo1Pqd8L02uojj9-xuuzqw3K49po'; // Metadata JSON
 
+  // Fixed value for speed test.
   const transactionBuilder: TransactionBuilder = await metaplex
     .nfts()
     .builders()
