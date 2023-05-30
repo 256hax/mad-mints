@@ -22,8 +22,8 @@ Look at following Documents(Power Point).
 [Mad Mints Document](https://github.com/256hax/mad-mints/blob/main/docs/Mad-Mints.pptx)
 
 ## Prerequisite
-- User scenario: many users(e.g. 10K users) mint an NFT on Mint Site.
-- We haven't known Mint Address and User Address in advance.
+- User scenario: many users(e.g. 10K users) mint an NFT on Mint Site. Provider try to improve transaction speed(UI/UX) when users mint.
+- Provider haven't known Mint Address and User Address in advance.
 
 ## Setup
 ```
