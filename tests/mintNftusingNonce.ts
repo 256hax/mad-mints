@@ -16,7 +16,7 @@ import {
 import { createNonceAccount } from '../app/modules/createNonceAccount';
 import { getNonceAccount } from '../app/modules/getNonceAccount';
 import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
-import { createMetaplexTransactionBuilder } from '../app/modules/createMetaplexTransactionBuilder';
+import { createStandardNftTx } from '../app/modules/createStandardNftTx';
 
 describe('Mint NFT using Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -84,7 +84,7 @@ describe('Mint NFT using Nonce', async () => {
     // NFT
     // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
-    const transactionBuilder = await createMetaplexTransactionBuilder(
+    const transactionBuilder = await createStandardNftTx(
       metaplex,
       mintKeypair,
       minter.publicKey

@@ -12,17 +12,18 @@ import {
   PublicKey,
 } from '@metaplex-foundation/js';
 
-export const createMetaplexTransactionBuilder = async (
+export const createStandardNftTx = async (
   metaplex: Metaplex,
   mintKeypair: Keypair,
   tokenOwner: PublicKey,
-) => {
+): Promise<TransactionBuilder> => {
   const operationOptions: OperationOptions = {
     commitment: 'confirmed', // If you fail to create Mint Account, set 'finalized' status.
   };
 
   // Fixed value for speed test.
-  const uri = 'https://arweave.net/rZyxNClGX937dETjo1Pqd8L02uojj9-xuuzqw3K49po'; // Metadata JSON
+  const uri: string = 'https://arweave.net/rZyxNClGX937dETjo1Pqd8L02uojj9-xuuzqw3K49po'; // Metadata JSON
+  const collection: PublicKey = new PublicKey('J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w'); // Collection NFT Address
 
   // Fixed value for speed test.
   const transactionBuilder: TransactionBuilder = await metaplex
@@ -35,6 +36,7 @@ export const createMetaplexTransactionBuilder = async (
         sellerFeeBasisPoints: 500, // Represents 5.00%
         maxSupply: toBigNumber(1),
         useNewMint: mintKeypair, // we pass our mint in as the new mint to use
+        collection: collection,
         tokenOwner: tokenOwner, // Mint to
       },
       operationOptions
