@@ -13,13 +13,15 @@ import { createStandardNftTx } from '../app/modules/createStandardNftTx';
 import { progressBar } from '../app/modules/progressBar';
 
 describe('Mint large amount NFTs', async () => {
-  const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
+  const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
 
   // Metaplex
+  // @ts-ignore
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
+  // @ts-ignore
   const payer = provider.wallet.payer;
   const minter = Keypair.generate();
 

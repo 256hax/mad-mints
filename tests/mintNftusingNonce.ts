@@ -19,7 +19,7 @@ import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 import { createStandardNftTx } from '../app/modules/createStandardNftTx';
 
 describe('Mint NFT using Nonce', async () => {
-  const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
+  const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
 
@@ -28,8 +28,10 @@ describe('Mint NFT using Nonce', async () => {
   const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
   // Metaplex
+  // @ts-ignore
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
+  // @ts-ignore
   const payer = provider.wallet.payer;
   const minter = Keypair.generate();
   let nonceAccount: PublicKey | null;
