@@ -60,11 +60,11 @@ Second terminal:
 ```
 
 ```
-% anchor run 10kMintNfts
+% anchor run mintLargeAmountNfts
 ```
 
 ```
-% anchor run 10kMintNftsUsingNonce
+% anchor run mintLargeAmountNftsUsingNonce
 ```
 
 ## Files
@@ -72,10 +72,8 @@ Second terminal:
 - `transferSolUsingNonce.ts`: Transfer SOL using Durable Nonce Account
 - `mintNft.ts`: Mint NFT
 - `mintNftUsingNonce.ts`: Mint NFT using Durable Nonce Account
-- `10kMintNfts.ts`: Mint NFTs with progress bar
-- `10kMintNftsUsingNonce.ts`: Mint NFTs using Durable Nonce Account with progress bar
-
-Note: Minting 10K NFTs takes a long time. Please adjust minting times.
+- `mintLargeAmountNfts.ts`: Mint NFTs with progress bar
+- `mintLargeAmountNftsUsingNonce.ts`: Mint NFTs using Durable Nonce Account with progress bar
 
 ## Adjust Config
 ### Number of times to add accounts/instructions
@@ -88,14 +86,16 @@ const addNumberOfInstructions = 1; // Number of times to add instructions.
 ```
 
 ### Number of times to creation Nonce Account and mint NFTs
-- 10kMintNfts.ts
-- 10kMintNftsUsingNonce.ts
+- mintLargeAmountNfts.ts
+- mintLargeAmountNftsUsingNonce.ts
 
 ```
 // Nonce Account creation and minting times.
 //  e.g. 10K = 10_000
 const numberOfNonceAccounts = 10;
 ```
+
+Note: Minting 10K NFTs takes a long time. Please adjust minting times.
 
 ## Note
 - When `anchor test`, clone Metaplex Programs from Devnet for Mint NFT. If you got a below error, run `anchor test`.
