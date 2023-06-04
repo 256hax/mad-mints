@@ -20,6 +20,7 @@ describe('Mint NFT', async () => {
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
   const payer = provider.wallet.payer;
+  const minter = Keypair.generate();
 
   it('Run', async () => {
     // ------------------------------------
@@ -54,7 +55,11 @@ describe('Mint NFT', async () => {
     // NFT
     // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
-    const transactionBuilder = await createMetaplexTransactionBuilder(metaplex, mintKeypair);
+    const transactionBuilder = await createMetaplexTransactionBuilder(
+      metaplex,
+      mintKeypair,
+      minter.publicKey
+    );
     // Convert to transaction
     const transaction = await transactionBuilder.toTransaction(latestBlockhash)
 

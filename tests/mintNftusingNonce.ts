@@ -31,6 +31,7 @@ describe('Mint NFT using Nonce', async () => {
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
   const payer = provider.wallet.payer;
+  const minter = Keypair.generate();
   let nonceAccount: PublicKey | null;
   let nonce: string;
   let signature: string;
@@ -83,7 +84,11 @@ describe('Mint NFT using Nonce', async () => {
     // NFT
     // The mint needs to sign the transaction, so we generate a new keypair for it.
     const mintKeypair = Keypair.generate();
-    const transactionBuilder = await createMetaplexTransactionBuilder(metaplex, mintKeypair);
+    const transactionBuilder = await createMetaplexTransactionBuilder(
+      metaplex,
+      mintKeypair,
+      minter.publicKey
+    );
     const nftInstructions = transactionBuilder.getInstructions();
 
     // nonce advance must be the first insturction.

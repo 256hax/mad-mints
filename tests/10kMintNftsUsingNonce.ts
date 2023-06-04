@@ -32,6 +32,7 @@ describe('10K Mint NFTs using Nonce', async () => {
   const metaplex = getMetaplexConnection(connection, provider.wallet.payer);
 
   const payer = provider.wallet.payer;
+  const minter = Keypair.generate();
   let nonceAccounts: { publickey: PublicKey, nonce: string }[] = new Array();
 
   // Nonce Account creation and minting times.
@@ -97,7 +98,11 @@ describe('10K Mint NFTs using Nonce', async () => {
       // NFT
       // The mint needs to sign the transaction, so we generate a new keypair for it.
       const mintKeypair = Keypair.generate();
-      const transactionBuilder = await createMetaplexTransactionBuilder(metaplex, mintKeypair);
+      const transactionBuilder = await createMetaplexTransactionBuilder(
+        metaplex,
+        mintKeypair,
+        minter.publicKey
+      );
       const nftInstructions = transactionBuilder.getInstructions();
 
       // nonce advance must be the first insturction.
@@ -132,7 +137,7 @@ describe('10K Mint NFTs using Nonce', async () => {
     const endTimeTotal = performance.now();
     console.log('\n/// Speed Test Results ///////////////////////////');
     console.log('Entire                   =>', endTimeTotal - startTimeTotal, 'ms');
-    console.log('Number of Nonce Acctouns =>', numberOfNonceAccounts);
+    console.log('Number of Nonce Accounts =>', numberOfNonceAccounts);
     console.log('payer                    =>', payer.publicKey.toString());
   });
 });
