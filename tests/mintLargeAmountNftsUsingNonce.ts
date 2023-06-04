@@ -19,7 +19,7 @@ import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
 import { createMetaplexTransactionBuilder } from '../app/modules/createMetaplexTransactionBuilder';
 import { progressBar } from '../app/modules/progressBar';
 
-describe('10K Mint NFTs using Nonce', async () => {
+describe('Mint large amount NFTs using Nonce', async () => {
   const provider: any = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;

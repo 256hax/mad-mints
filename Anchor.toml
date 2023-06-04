@@ -17,8 +17,8 @@ transferSol = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/transferSol
 transferSolUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/transferSolUsingNonce.ts"
 mintNft = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintNft.ts"
 mintNftUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintNftUsingNonce.ts"
-10kMintNfts = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/10kMintNfts.ts"
-10kMintNftsUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/10kMintNftsUsingNonce.ts"
+mintLargeAmountNfts = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintLargeAmountNfts.ts"
+mintLargeAmountNftsUsingNonce = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/mintLargeAmountNftsUsingNonce.ts"
 
 # Set source RPC for clone
 [test.validator]
