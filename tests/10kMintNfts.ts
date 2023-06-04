@@ -52,16 +52,16 @@ describe('10K Mint NFTs', async () => {
         minter.publicKey
       );
       // Convert to transaction
-      const transaction = await transactionBuilder.toTransaction(latestBlockhash)
+      const tx = await transactionBuilder.toTransaction(latestBlockhash)
 
       // Partially sign the transaction, as the shop and the mint.
       // The account is also a required signer, but they'll sign it with their wallet after we return it.
       // transaction.partialSign(wallet);
-      transaction.sign(payer);
+      tx.sign(payer);
 
       const signature = await sendAndConfirmTransaction(
         connection,
-        transaction,
+        tx,
         [payer, mintKeypair]
       );
     }
