@@ -103,5 +103,6 @@ Note: Minting 10K NFTs takes a long time. Please adjust minting times.
 Error: failed to send transaction: Transaction simulation failed: Attempt to load a program that does not exist
 ```
 
-## TODO
-- Add collection address and verify collection NFT. I'm struggling with the timing of execution.
+## For Mainnet
+- Set Custom RPC for connection. Ref: [Metaplex Docs - RPCs Available](https://docs.metaplex.com/resources/rpc-providers#rpcs-available)
+- Mint collection NFT before running, and add a verification step at the end.
