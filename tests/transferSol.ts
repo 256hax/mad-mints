@@ -58,22 +58,23 @@ describe('Transfer SOL', async () => {
     let tx = new Transaction();
 
     // Add Accounts to Instruction
-    let txInstruction = SystemProgram.transfer({
+    let instruction = SystemProgram.transfer({
       fromPubkey: payer.publicKey,
       toPubkey: taker.publicKey,
       lamports: LAMPORTS_PER_SOL * 0.01,
     });
 
-    // Add Instructions
+    // Add accounts to instructions.
     for (let i = 0; i <= addNumberOfAccouns; i++) {
       const reference = Keypair.generate();
-      txInstruction.keys.push(
+      instruction.keys.push(
         { pubkey: reference.publicKey, isWritable: false, isSigner: false },
       );
     }
 
+    // Add Instructions.
     for (let i = 0; i <= addNumberOfInstructions; i++) {
-      tx.add(txInstruction);
+      tx.add(instruction);
     }
 
     tx.feePayer = payer.publicKey;
