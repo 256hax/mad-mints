@@ -57,7 +57,6 @@ describe('Transfer SOL', async () => {
 
     let tx = new Transaction();
 
-    // Add Accounts to Instruction
     let instructions = SystemProgram.transfer({
       fromPubkey: payer.publicKey,
       toPubkey: taker.publicKey,
