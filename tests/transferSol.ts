@@ -58,7 +58,7 @@ describe('Transfer SOL', async () => {
     let tx = new Transaction();
 
     // Add Accounts to Instruction
-    let instruction = SystemProgram.transfer({
+    let instructions = SystemProgram.transfer({
       fromPubkey: payer.publicKey,
       toPubkey: taker.publicKey,
       lamports: LAMPORTS_PER_SOL * 0.01,
@@ -67,14 +67,14 @@ describe('Transfer SOL', async () => {
     // Add accounts to instructions.
     for (let i = 0; i <= addNumberOfAccouns; i++) {
       const reference = Keypair.generate();
-      instruction.keys.push(
+      instructions.keys.push(
         { pubkey: reference.publicKey, isWritable: false, isSigner: false },
       );
     }
 
     // Add Instructions.
     for (let i = 0; i <= addNumberOfInstructions; i++) {
-      tx.add(instruction);
+      tx.add(instructions);
     }
 
     tx.feePayer = payer.publicKey;
