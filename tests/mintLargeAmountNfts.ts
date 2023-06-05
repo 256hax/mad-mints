@@ -37,7 +37,7 @@ describe('Mint large amount NFTs', async () => {
 
     console.log('Mint NFTs...');
 
-    for (let i = 0; i <= numberOfNonceAccounts; i++) {
+    for (let i = 0; i < numberOfNonceAccounts; i++) {
       progressBar(i, numberOfNonceAccounts);
       
       // ------------------------------------

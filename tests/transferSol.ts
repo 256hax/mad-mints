@@ -64,7 +64,7 @@ describe('Transfer SOL', async () => {
     });
 
     // Add accounts to instructions.
-    for (let i = 0; i <= addNumberOfAccouns; i++) {
+    for (let i = 0; i < addNumberOfAccouns; i++) {
       const reference = Keypair.generate();
       instructions.keys.push(
         { pubkey: reference.publicKey, isWritable: false, isSigner: false },
@@ -72,7 +72,7 @@ describe('Transfer SOL', async () => {
     }
 
     // Add Instructions.
-    for (let i = 0; i <= addNumberOfInstructions; i++) {
+    for (let i = 0; i < addNumberOfInstructions; i++) {
       tx.add(instructions);
     }
 

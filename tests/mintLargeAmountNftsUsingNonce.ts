@@ -44,7 +44,7 @@ describe('Mint large amount NFTs using Nonce', async () => {
   it('Run', async () => {
     console.log('Creating Nonce Account...');
     
-    for (let i = 0; i <= numberOfNonceAccounts; i++) {
+    for (let i = 0; i < numberOfNonceAccounts; i++) {
       progressBar(i, numberOfNonceAccounts);
 
       // ------------------------------------
