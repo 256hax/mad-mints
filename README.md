@@ -27,10 +27,11 @@ Look at following Documents(Power Point).
 
 ## Directories
 ### anchor
-Speed test with running local validator(including clone Metaplex Programs).
+Speed test with local validator.  
+When you run anchor, clone Metaplex Programs for mint NFTs.
 
 ### packages
-Utility scripts(e.g. Create durable nonce).  
+Utility scripts(e.g. create durable nonce). Call this packages(specifically dist directory) from anchor or other scripts.  
 Note: this is local npm package(private mode).
 
 ## Setup and Run
