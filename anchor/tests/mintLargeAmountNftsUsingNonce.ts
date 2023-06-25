@@ -13,11 +13,11 @@ import {
 } from '@solana/web3.js';
 
 // Modules
-import { createNonceAccount } from '../app/modules/createNonceAccount';
-import { getNonceAccount } from '../app/modules/getNonceAccount';
-import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
-import { createStandardNftTx } from '../app/modules/createStandardNftTx';
-import { progressBar } from '../app/modules/progressBar';
+import { createNonceAccount } from 'mad-mints-packages';
+import { getNonceAccount } from 'mad-mints-packages';
+import { getMetaplexConnection } from 'mad-mints-packages';
+import { createStandardNftTx } from 'mad-mints-packages';
+import { progressBar } from 'mad-mints-packages';
 
 describe('Mint large amount NFTs using Nonce', async () => {
   const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -80,7 +80,7 @@ describe('Mint large amount NFTs using Nonce', async () => {
 
     console.log('\nMint NFTs...');
 
-    for (let i = 0; i <= numberOfNonceAccounts; i++) {
+    for (let i = 0; i < numberOfNonceAccounts; i++) {
       progressBar(i, numberOfNonceAccounts);
 
       const nonceAccount = nonceAccounts[i].publickey;

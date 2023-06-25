@@ -8,7 +8,8 @@
     "@metaplex-foundation/js": "^0.19.3",
     "@solana/spl-token": "^0.3.7",
     "@types/bs58": "^4.0.1",
-    "@types/node": "^20.2.4"
+    "@types/node": "^20.2.4",
+    "mad-mints-packages": "file:../packages"
   },
   "devDependencies": {
     "@types/bn.js": "^5.1.0",

@@ -14,8 +14,8 @@ import {
 } from '@solana/web3.js';
 
 // Modules
-import { createNonceAccount } from '../app/modules/createNonceAccount';
-import { getNonceAccount } from '../app/modules/getNonceAccount';
+import { createNonceAccount } from 'mad-mints-packages';
+import { getNonceAccount } from 'mad-mints-packages';
 
 describe('Transfer SOL using Nonce', async () => {
   const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.

@@ -1,31 +1,20 @@
-// Lib
-import * as bs58 from 'bs58';
-
 // Anchor
 import * as anchor from '@coral-xyz/anchor';
 
 // Solana
 import {
   Keypair,
-  PublicKey,
-  SystemProgram,
-  Transaction,
+  sendAndConfirmTransaction,
 } from '@solana/web3.js';
 
 // Modules
-import { createNonceAccount } from '../app/modules/createNonceAccount';
-import { getNonceAccount } from '../app/modules/getNonceAccount';
-import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
-import { createStandardNftTx } from '../app/modules/createStandardNftTx';
+import { getMetaplexConnection } from 'mad-mints-packages';
+import { createStandardNftTx } from 'mad-mints-packages';
 
-describe('Mint NFT using Nonce', async () => {
+describe('Mint NFT', async () => {
   const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
   anchor.setProvider(provider);
   const connection = provider.connection;
-
-  // Nonce Account Authority. Change to your key.
-  const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
-  const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
 
   // Metaplex
   // @ts-ignore
@@ -34,30 +23,8 @@ describe('Mint NFT using Nonce', async () => {
   // @ts-ignore
   const payer = provider.wallet.payer;
   const minter = Keypair.generate();
-  let nonceAccount: PublicKey | null;
-  let nonce: string;
-  let signature: string;
 
   it('Run', async () => {
-    // ------------------------------------
-    //  Create Nonce Account
-    // ------------------------------------
-    nonceAccount = await createNonceAccount(
-      connection,
-      payer,
-      nonceAccountAuth.publicKey,
-    );
-
-    if (!nonceAccount) throw Error('Nonce Account not found.');
-
-    // ------------------------------------
-    //  Get Nonce
-    // ------------------------------------
-    const nonceAccountInfo = await getNonceAccount(connection, nonceAccount);
-
-    if (!nonceAccountInfo) throw Error('Nonce Account not found.');
-    nonce = nonceAccountInfo.nonce;
-
     // ------------------------------------
     //  Start Speed Test
     // ------------------------------------
@@ -75,13 +42,17 @@ describe('Mint NFT using Nonce', async () => {
     startTime = performance.now();
     ///////////////////////////////////////
 
-    let tx = new Transaction();
+    const latestBlockhash = await connection.getLatestBlockhash()
 
-    // Nonce
-    let nonceInstruction = SystemProgram.nonceAdvance({
-      noncePubkey: nonceAccount,
-      authorizedPubkey: nonceAccountAuth.publicKey,
-    });
+    ///////////////////////////////////////
+    endTime = performance.now();
+    console.log('Get Latest Block Hash  =>', endTime - startTime, 'ms');
+    ///////////////////////////////////////
+
+    ///////////////////////////////////////
+    startTime = 0, endTime = 0; // Init
+    startTime = performance.now();
+    ///////////////////////////////////////
 
     // NFT
     // The mint needs to sign the transaction, so we generate a new keypair for it.
@@ -91,52 +62,39 @@ describe('Mint NFT using Nonce', async () => {
       mintKeypair,
       minter.publicKey
     );
-    const nftInstructions = transactionBuilder.getInstructions();
-
-    // nonce advance must be the first insturction.
-    tx.add(nonceInstruction);
-    // transactionBuilder have 2 array. Add all of array to tx.
-    nftInstructions.forEach(function (insturction) {
-      tx.add(insturction)
-    });
-
-    // assign `nonce` as recentBlockhash
-    tx.recentBlockhash = nonce;
-    tx.feePayer = payer.publicKey;
+    // Convert to transaction
+    const tx = await transactionBuilder.toTransaction(latestBlockhash)
 
     ///////////////////////////////////////
     endTime = performance.now();
     console.log('Create Instructions    =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 
-    // ------------------------------------
-    //  Sign Transaction
-    // ------------------------------------
     ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
     ///////////////////////////////////////
 
-    tx.sign(
-      payer,
-      nonceAccountAuth,
-      mintKeypair,
-    );
+    // Partially sign the transaction, as the shop and the mint.
+    // The account is also a required signer, but they'll sign it with their wallet after we return it.
+    // transaction.partialSign(wallet);
+    tx.sign(payer);
 
     ///////////////////////////////////////
     endTime = performance.now();
     console.log('Sign Transaction       =>', endTime - startTime, 'ms');
     ///////////////////////////////////////
 
-    // ------------------------------------
-    //  Send Transaction
-    // ------------------------------------
     ///////////////////////////////////////
     startTime = 0, endTime = 0; // Init
     startTime = performance.now();
     ///////////////////////////////////////
 
-    signature = await connection.sendRawTransaction(tx.serialize());
+    const signature = await sendAndConfirmTransaction(
+      connection,
+      tx,
+      [payer, mintKeypair]
+    );
 
     ///////////////////////////////////////
     endTime = performance.now();

@@ -8,9 +8,9 @@ import {
 } from '@solana/web3.js';
 
 // Modules
-import { getMetaplexConnection } from '../app/modules/getMetaplexConnection';
-import { createStandardNftTx } from '../app/modules/createStandardNftTx';
-import { progressBar } from '../app/modules/progressBar';
+import { getMetaplexConnection } from 'mad-mints-packages';
+import { createStandardNftTx } from 'mad-mints-packages';
+import { progressBar } from 'mad-mints-packages';
 
 describe('Mint large amount NFTs', async () => {
   const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
@@ -39,7 +39,7 @@ describe('Mint large amount NFTs', async () => {
 
     for (let i = 0; i < numberOfNonceAccounts; i++) {
       progressBar(i, numberOfNonceAccounts);
-      
+
       // ------------------------------------
       //  Create Instruction
       // ------------------------------------
