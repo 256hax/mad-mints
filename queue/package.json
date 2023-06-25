@@ -1,0 +1,26 @@
+{
+  "name": "mad-mints-queue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "13.4.5",
+    "@solana/web3.js": "^1.77.3",
+    "@types/node": "20.3.1",
+    "@types/react": "18.2.12",
+    "@types/react-dom": "18.2.5",
+    "eslint": "8.42.0",
+    "eslint-config-next": "^12.0.4",
+    "mad-mints-packages": "file:../packages",
+    "next": "13.4.5",
+    "quirrel": "^1.14.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.1.3"
+  }
+}
