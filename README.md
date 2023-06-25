@@ -27,7 +27,7 @@ Look at following Documents(Power Point).
 
 ## Directories
 ### anchor
-Speed test with local validator.  
+Speed test using local validator.  
 When you run anchor, clone Metaplex Programs for mint NFTs.
 
 ### packages
