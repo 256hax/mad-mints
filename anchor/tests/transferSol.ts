@@ -10,7 +10,7 @@ import {
 } from '@solana/web3.js';
 
 describe('Transfer SOL', async () => {
-  const provider = anchor.AnchorProvider.env(); // type any for provider.wallet.payer.
+  const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
   const connection = provider.connection;
 
