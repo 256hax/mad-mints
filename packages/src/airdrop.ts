@@ -6,10 +6,11 @@ import {
 
 export const airdrop = async (
   connection: Connection,
-  takerPublicKey: PublicKey
+  takerPublicKey: PublicKey,
+  sol: number,
 ) => {
   const latestBlockhash = await connection.getLatestBlockhash();
-  const signatureAirdrop = await connection.requestAirdrop(takerPublicKey, LAMPORTS_PER_SOL);
+  const signatureAirdrop = await connection.requestAirdrop(takerPublicKey, LAMPORTS_PER_SOL * sol);
 
   try {
     await connection.confirmTransaction({

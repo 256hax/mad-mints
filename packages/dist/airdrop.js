@@ -11,9 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.airdrop = void 0;
 const web3_js_1 = require("@solana/web3.js");
-const airdrop = (connection, takerPublicKey) => __awaiter(void 0, void 0, void 0, function* () {
+const airdrop = (connection, takerPublicKey, sol) => __awaiter(void 0, void 0, void 0, function* () {
     const latestBlockhash = yield connection.getLatestBlockhash();
-    const signatureAirdrop = yield connection.requestAirdrop(takerPublicKey, web3_js_1.LAMPORTS_PER_SOL);
+    const signatureAirdrop = yield connection.requestAirdrop(takerPublicKey, web3_js_1.LAMPORTS_PER_SOL * sol);
     try {
         yield connection.confirmTransaction({
             blockhash: latestBlockhash.blockhash,
