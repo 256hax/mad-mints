@@ -8,12 +8,6 @@
 
 [Anchor - installation](https://www.anchor-lang.com/docs/installation)
 
-### packages
-```
-% cd packages
-% npm i
-```
-
 ## Run (How to speed test)
 First terminal:
 ```
