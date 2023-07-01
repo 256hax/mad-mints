@@ -21,6 +21,14 @@ This is one of queueing example. You can use your favorite queue systems(e.g. Am
 % npm run dev
 ```
 
+### Third terminal(run Solana Test Validator):
+```
+% cd mad-mints/anchor/.anchor
+% solana-test-validator
+```
+
+Note: Setup and run in anchor first. Check README in mad-mints/anchor.
+
 ### First browser tab(run Scripts):
 - [mintLargeAmountNfts](http://localhost:3000/api/mintLargeAmountNfts)
 - (WIP)[mintLargeAmountNftsUsingNonce](http://localhost:3000/api/mintLargeAmountNftsUsingNonce)
