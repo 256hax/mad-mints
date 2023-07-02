@@ -83,6 +83,9 @@ describe('Mint large amount NFTs using Nonce', async () => {
 
     console.log('\nMint NFTs...');
 
+    // ------------------------------------
+    //  Create Transactions
+    // ------------------------------------
     for (let i = 0; i < numberOfAccounts; i++) {
       progressBar(i, numberOfAccounts);
 
@@ -90,7 +93,7 @@ describe('Mint large amount NFTs using Nonce', async () => {
       const nonce = nonceAccounts[i].nonce;
 
       // ------------------------------------
-      //  Create Instruction
+      //  Create an Instruction
       // ------------------------------------
       let tx = new Transaction();
 

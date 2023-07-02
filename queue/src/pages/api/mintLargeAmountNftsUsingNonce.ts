@@ -99,7 +99,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const nonce = nonceAccounts[i].nonce;
 
     // ------------------------------------
-    //  Create Instruction
+    //  Create an Instruction
     // ------------------------------------
     let tx = new Transaction();
 

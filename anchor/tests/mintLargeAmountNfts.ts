@@ -37,11 +37,14 @@ describe('Mint large amount NFTs', async () => {
 
     console.log('Mint NFTs...');
 
+    // ------------------------------------
+    //  Create Transactions
+    // ------------------------------------
     for (let i = 0; i < numberOfAccounts; i++) {
       progressBar(i, numberOfAccounts);
 
       // ------------------------------------
-      //  Create Instruction
+      //  Create an Instruction
       // ------------------------------------
       const latestBlockhash = await connection.getLatestBlockhash()
 

@@ -48,7 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     progressBar(i, numberOfAccounts);
 
     // ------------------------------------
-    //  Create Instruction
+    //  Create an Instruction
     // ------------------------------------
     const latestBlockhash = await connection.getLatestBlockhash()
 
