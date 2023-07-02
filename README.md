@@ -54,3 +54,6 @@ Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) ,transaction process fl
 
 ## Setup and Run
 Look at each directories.
+
+## Note
+Please set sleep or retry for rate limit in Mainnet. Make sure to check your Custom RPC.
