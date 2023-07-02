@@ -46,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // (Nonce) Account creation and minting times for demo.
   // e.g. 10K = 10_000
-  const numberOfAccounts = 100;
+  const numberOfAccounts = 3;
 
   // ------------------------------------
   //  Airdrop in Localnet
