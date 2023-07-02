@@ -1,5 +1,5 @@
 # Queue
-Queue system for Mad Mints using Quirrel.
+Queue system for mint NFT using Quirrel.
 
 ## Queue System
 [Quirrel](https://quirrel.dev/) is Job Queueing for Serverless.  
