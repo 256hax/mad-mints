@@ -19,10 +19,12 @@ If you need to ask this brand, please contact to him.
 
 ### Standard
 completed in 47 sec.  
+
 https://github.com/256hax/mad-mints/assets/1146563/38abf529-3fc3-4eca-90e0-505bbf475bf4
 
 ### Mad Mints
 completed in 3 sec.  
+
 https://github.com/256hax/mad-mints/assets/1146563/7af218f8-3796-46f0-9310-e1d94f53b519
 
 ## Summary
