@@ -9,6 +9,7 @@
     "@solana/spl-token": "^0.3.7",
     "@types/bs58": "^4.0.1",
     "@types/node": "^20.2.4",
+    "dotenv": "^16.3.1",
     "mad-mints-packages": "file:../packages"
   },
   "devDependencies": {

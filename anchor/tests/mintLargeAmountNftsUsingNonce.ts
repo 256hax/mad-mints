@@ -1,4 +1,5 @@
 // Lib
+import 'dotenv/config';
 import * as bs58 from 'bs58';
 
 // Anchor
@@ -24,9 +25,10 @@ describe('Mint large amount NFTs using Nonce', async () => {
   anchor.setProvider(provider);
   const connection = provider.connection;
 
-  // Nonce Account Authority. Change to your key.
-  const secretKey = '3u4caiG9kSfRSySL9a17tJBUPHdAMkapQrKQeDmHZ9oQeh6LgSKyZMgoicpp9eqZ1Z41Gzom6iputb8b2i9DJweC';
-  const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(secretKey));
+  // Read None Account Auth Secret Key
+  const nonceAccountAuthSecretKeyBase58 = process.env.NONCE_ACCOUNT_AUTH_SECRET_KEY_BASE58;
+  if(!nonceAccountAuthSecretKeyBase58) throw Error('nonceAccountAuthSecretKeyBase58 not found.');
+  const nonceAccountAuth = Keypair.fromSecretKey(bs58.decode(nonceAccountAuthSecretKeyBase58));
 
   // Metaplex
   // @ts-ignore
