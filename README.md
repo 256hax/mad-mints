@@ -19,11 +19,11 @@ If you need to ask this brand, please contact to him.
 
 ### Standard
 completed in 47 sec.  
-https://github.com/256hax/mad-mints/assets/1146563/f9ecfa98-0192-4d8e-b4d0-b22f2714ccc1
+https://github.com/256hax/mad-mints/assets/1146563/38abf529-3fc3-4eca-90e0-505bbf475bf4
 
 ### Mad Mints
 completed in 3 sec.  
-https://github.com/256hax/mad-mints/assets/1146563/862b5c2a-a480-4a96-b26e-5bbe7533f513
+https://github.com/256hax/mad-mints/assets/1146563/7af218f8-3796-46f0-9310-e1d94f53b519
 
 ## Summary
 - [Mint NFT conclusion by 256hax Twitter](https://twitter.com/256hax/status/1662963913078734850)
