@@ -44,21 +44,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Metaplex
   const metaplex = getMetaplexConnection(connection, payer);
 
-  // Nonce Account creation and minting times for demo.
+  // (Nonce) Account creation and minting times for demo.
   // e.g. 10K = 10_000
-  const numberOfNonceAccounts = 100;
+  const numberOfAccounts = 100;
 
   // ------------------------------------
   //  Airdrop in Localnet
   // ------------------------------------
   await airdrop(connection, payer.publicKey, 900);
 
+  // ------------------------------------
+  //  Create Nonce Accounts
+  // ------------------------------------
   console.log('Creating Nonce Account...');
-  for (let i = 0; i < numberOfNonceAccounts; i++) {
-    progressBar(i, numberOfNonceAccounts);
+  for (let i = 0; i < numberOfAccounts; i++) {
+    progressBar(i, numberOfAccounts);
 
     // ------------------------------------
-    //  Create Nonce Account
+    //  Create a Nonce Account
     // ------------------------------------
     const nonceAccount = await createNonceAccount(
       connection,
@@ -84,13 +87,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   // ------------------------------------
-  //  Create Transaction
+  //  Create Transactions
   // ------------------------------------
   console.log('\nMint NFTs...');
 
   // Create NFT instructions for demo.
-  for (let i = 0; i < numberOfNonceAccounts; i++) {
-    progressBar(i, numberOfNonceAccounts);
+  for (let i = 0; i < numberOfAccounts; i++) {
+    progressBar(i, numberOfAccounts);
 
     const nonceAccount = nonceAccounts[i].publickey;
     const nonce = nonceAccounts[i].nonce;
@@ -170,6 +173,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Note: Can't use res.json.
   }
 
-  console.log('Number of Nonce Accounts =>', numberOfNonceAccounts);
-  console.log('payer                    =>', payer.publicKey.toString());
+  console.log('Number of Accounts =>', numberOfAccounts);
+  console.log('payer              =>', payer.publicKey.toString());
 };

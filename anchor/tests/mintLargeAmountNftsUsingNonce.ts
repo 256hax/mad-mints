@@ -37,18 +37,21 @@ describe('Mint large amount NFTs using Nonce', async () => {
   const minter = Keypair.generate();
   let nonceAccounts: { publickey: PublicKey, nonce: string }[] = new Array();
 
-  // Nonce Account creation and minting times.
+  // (Nonce) Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 10;
+  const numberOfAccounts = 10;
 
   it('Run', async () => {
+    // ------------------------------------
+    //  Create Nonce Accounts
+    // ------------------------------------
     console.log('Creating Nonce Account...');
-    
-    for (let i = 0; i < numberOfNonceAccounts; i++) {
-      progressBar(i, numberOfNonceAccounts);
+
+    for (let i = 0; i < numberOfAccounts; i++) {
+      progressBar(i, numberOfAccounts);
 
       // ------------------------------------
-      //  Create Nonce Account
+      //  Create a Nonce Account
       // ------------------------------------
       const nonceAccount = await createNonceAccount(
         connection,
@@ -80,8 +83,8 @@ describe('Mint large amount NFTs using Nonce', async () => {
 
     console.log('\nMint NFTs...');
 
-    for (let i = 0; i < numberOfNonceAccounts; i++) {
-      progressBar(i, numberOfNonceAccounts);
+    for (let i = 0; i < numberOfAccounts; i++) {
+      progressBar(i, numberOfAccounts);
 
       const nonceAccount = nonceAccounts[i].publickey;
       const nonce = nonceAccounts[i].nonce;
@@ -138,8 +141,8 @@ describe('Mint large amount NFTs using Nonce', async () => {
     // ------------------------------------
     const endTimeTotal = performance.now();
     console.log('\n/// Speed Test Results ///////////////////////////');
-    console.log('Entire                   =>', endTimeTotal - startTimeTotal, 'ms');
-    console.log('Number of Nonce Accounts =>', numberOfNonceAccounts);
-    console.log('payer                    =>', payer.publicKey.toString());
+    console.log('Entire             =>', endTimeTotal - startTimeTotal, 'ms');
+    console.log('Number of Accounts =>', numberOfAccounts);
+    console.log('payer              =>', payer.publicKey.toString());
   });
 });

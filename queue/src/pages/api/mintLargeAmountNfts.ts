@@ -31,9 +31,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Metaplex
   const metaplex = getMetaplexConnection(connection, payer);
 
-  // Nonce Account creation and minting times for demo.
+  // (Nonce) Account creation and minting times for demo.
   // e.g. 10K = 10_000
-  const numberOfNonceAccounts = 3;
+  const numberOfAccounts = 3;
 
   // ------------------------------------
   //  Airdrop in Localnet
@@ -41,11 +41,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   await airdrop(connection, payer.publicKey, 900);
 
   // ------------------------------------
-  //  Create Transaction
+  //  Create Transactions
   // ------------------------------------
   // Create NFT instructions for demo.
-  for (let i = 0; i < numberOfNonceAccounts; i++) {
-    progressBar(i, numberOfNonceAccounts);
+  for (let i = 0; i < numberOfAccounts; i++) {
+    progressBar(i, numberOfAccounts);
 
     // ------------------------------------
     //  Create Instruction
@@ -60,11 +60,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       mintKeypair,
       minter.publicKey
     );
+
     // Convert to transaction
     const tx = await transactionBuilder.toTransaction(latestBlockhash)
 
+    // ------------------------------------
+    //  Sign Transaction
+    // ------------------------------------
     tx.sign(payer);
 
+    // ------------------------------------
+    //  Serialize Transaction
+    // ------------------------------------
     // Serialize the transaction and convert to base64 to return it
     const serializedTransaction = tx.serialize({
       // We will need Alice to deserialize and sign the transaction
@@ -76,7 +83,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const mintSecretKeyBase58 = bs58.encode(mintKeypair.secretKey);
 
     const txPayload = ({
-      // tx,
       txBase64,
       mintSecretKeyBase58,
     });
@@ -96,6 +102,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Note: Can't use res.json.
   }
 
-  console.log('Number of Nonce Accounts =>', numberOfNonceAccounts);
-  console.log('payer                    =>', payer.publicKey.toString());
+  console.log('Number of Accounts =>', numberOfAccounts);
+  console.log('payer              =>', payer.publicKey.toString());
 };

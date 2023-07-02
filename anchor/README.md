@@ -61,14 +61,14 @@ const addNumberOfAccouns = 1; // Number of times to add accounts.
 const addNumberOfInstructions = 1; // Number of times to add instructions.
 ```
 
-### Number of times to creation Nonce Account and mint NFTs
+### Number of times to creation (Nonce) Account and mint NFTs
 - mintLargeAmountNfts.ts
 - mintLargeAmountNftsUsingNonce.ts
 
 ```
-// Nonce Account creation and minting times.
+// (Nonce) Account creation and minting times.
 //  e.g. 10K = 10_000
-const numberOfNonceAccounts = 10;
+const numberOfAccounts = 10;
 ```
 
 Note: Minting 10K NFTs takes a long time. Please adjust minting times.

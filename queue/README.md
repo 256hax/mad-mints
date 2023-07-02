@@ -35,3 +35,14 @@ Note: Setup and run in anchor first. Check README in mad-mints/anchor.
 
 ### Second browser tab(Check Queueing):
 - [Quirrel UI](https://ui.quirrel.dev/activity-log)
+
+## Adjust Config
+### Number of times to creation (Nonce) Account and mint NFTs
+- mintLargeAmountNfts.ts
+- mintLargeAmountNftsUsingNonce.ts
+
+```
+// (Nonce) Account creation and minting times.
+//  e.g. 10K = 10_000
+const numberOfAccounts = 3;
+```

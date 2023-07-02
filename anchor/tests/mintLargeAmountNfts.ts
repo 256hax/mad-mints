@@ -25,9 +25,9 @@ describe('Mint large amount NFTs', async () => {
   const payer = provider.wallet.payer;
   const minter = Keypair.generate();
 
-  // Nonce Account creation and minting times.
+  // (Nonce) Account creation and minting times.
   //  e.g. 10K = 10_000
-  const numberOfNonceAccounts = 10;
+  const numberOfAccounts = 10;
 
   it('Run', async () => {
     // ------------------------------------
@@ -37,8 +37,8 @@ describe('Mint large amount NFTs', async () => {
 
     console.log('Mint NFTs...');
 
-    for (let i = 0; i < numberOfNonceAccounts; i++) {
-      progressBar(i, numberOfNonceAccounts);
+    for (let i = 0; i < numberOfAccounts; i++) {
+      progressBar(i, numberOfAccounts);
 
       // ------------------------------------
       //  Create Instruction
@@ -56,6 +56,9 @@ describe('Mint large amount NFTs', async () => {
       // Convert to transaction
       const tx = await transactionBuilder.toTransaction(latestBlockhash)
 
+      // ------------------------------------
+      //  Sign Transaction
+      // ------------------------------------
       // Partially sign the transaction, as the shop and the mint.
       // The account is also a required signer, but they'll sign it with their wallet after we return it.
       // transaction.partialSign(wallet);
@@ -73,8 +76,8 @@ describe('Mint large amount NFTs', async () => {
     // ------------------------------------
     const endTimeTotal = performance.now();
     console.log('\n/// Speed Test Results ///////////////////////////');
-    console.log('Entire                   =>', endTimeTotal - startTimeTotal, 'ms');
-    console.log('Number of Nonce Accounts =>', numberOfNonceAccounts);
-    console.log('payer                    =>', payer.publicKey.toString());
+    console.log('Entire             =>', endTimeTotal - startTimeTotal, 'ms');
+    console.log('Number of Accounts =>', numberOfAccounts);
+    console.log('payer              =>', payer.publicKey.toString());
   });
 });
