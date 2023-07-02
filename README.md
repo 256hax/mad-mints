@@ -13,13 +13,25 @@ Quote from [Mad Armani 🎒 Twitter](https://twitter.com/armaniferrante/status/1
 He found this approach and named "Mad Mints".  
 If you need to ask this brand, please contact to him.
 
+## Compare the speed of Mint Standard and Mad Mints movies
+- mint 100 NFTs
+- progress 1% = mint 1 NFT
+
+### Standard
+completed in 47 sec.  
+https://github.com/256hax/mad-mints/assets/1146563/f9ecfa98-0192-4d8e-b4d0-b22f2714ccc1
+
+### Mad Mints
+completed in 3 sec.  
+https://github.com/256hax/mad-mints/assets/1146563/862b5c2a-a480-4a96-b26e-5bbe7533f513
+
 ## Summary
 - [Mint NFT conclusion by 256hax Twitter](https://twitter.com/256hax/status/1662963913078734850)
 - [Transfer SOL conclusion by 256hax Twitter](https://twitter.com/256hax/status/1661189677406208001)
 
 ## Prerequisite
 - User scenario: many users(e.g. 10K users) mint an NFT on Mint Site. Provider try to improve transaction speed(UI/UX) when users mint.
-- Provider haven't known Mint Address and User Address in advance.
+- Provider hasn't known Mint Address and User Address in advance.
 
 ## Directories
 ### anchor
