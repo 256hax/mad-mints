@@ -31,11 +31,11 @@ Queue system for mint NFT using Quirrel.
 If you need to build queue system, check this.
 
 ### packages
-Utility scripts(e.g. create durable nonce). Call this packages(specifically dist directory) from anchor or other scripts.  
+Utility scripts(e.g. create durable nonce). Call this packages(specifically dist directory) from anchor and queue scripts.  
 Note: this is local npm package(private mode).
 
 ### docs
-Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) and transaction process flow.
+Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) ,transaction process flow and directory structure of example codes.
 [Anatomy of Mad Mints(Power Point)](https://github.com/256hax/mad-mints/blob/main/docs/Mad-Mints.pptx)
 
 ## Setup and Run
