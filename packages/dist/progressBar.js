@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.progressBar = void 0;
 const progressBar = (currentCount, completeCount) => {
+    currentCount += 1; // Start at 1. 1 = 10%.
     const dots = ".".repeat(currentCount);
     const left = completeCount - currentCount;
     const empty = " ".repeat(left);
