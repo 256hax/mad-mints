@@ -31,7 +31,7 @@ Note: Setup and run in anchor first. Check README in mad-mints/anchor.
 
 ### First browser tab(run Scripts):
 - [mintLargeAmountNfts](http://localhost:3000/api/mintLargeAmountNfts)
-- (WIP)[mintLargeAmountNftsUsingNonce](http://localhost:3000/api/mintLargeAmountNftsUsingNonce)
+- [mintLargeAmountNftsUsingNonce](http://localhost:3000/api/mintLargeAmountNftsUsingNonce)
 
 ### Second browser tab(Check Queueing):
 - [Quirrel UI](https://ui.quirrel.dev/activity-log)
