@@ -30,6 +30,10 @@ Look at following Documents(Power Point).
 Speed test using local validator.  
 When you run anchor, clone Metaplex Programs for mint NFTs.
 
+### queue
+Queue system for mint NFT using Quirrel.  
+If you need to build queue system, check this.
+
 ### packages
 Utility scripts(e.g. create durable nonce). Call this packages(specifically dist directory) from anchor or other scripts.  
 Note: this is local npm package(private mode).
