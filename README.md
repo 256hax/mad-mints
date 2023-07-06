@@ -1,3 +1,5 @@
+![Mad Mints Logo](https://github.com/256hax/mad-mints/blob/main/docs/logo/mad-mints-logo-160x160.png?raw=true)
+
 # Mad Mints
 Improves the speed of minting NFTs transaction. With this approach, you'll be able to handle high demand and experience incredible UX.  
 
@@ -57,3 +59,6 @@ Look at each directories.
 
 ## Note
 Please set sleep or retry for rate limit in Mainnet. Make sure to check your Custom RPC.
+
+## Logo
+Mad Mints fun art logo by [shiroperu](https://twitter.com/shiroperu).
