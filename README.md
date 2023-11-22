@@ -51,8 +51,8 @@ Utility scripts(e.g. create durable nonce). Call this packages(specifically dist
 Note: this is local npm package(private mode).
 
 ### docs
-Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) ,transaction process flow and directory structure of example codes.
-[Anatomy of Mad Mints](https://docs.google.com/presentation/d/1BvufeTaRAwPXAxo14YeXZBOUKeqtacLpezLRgxDr_0s/edit?usp=sharing)
+Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) ,transaction process flow and directory structure of example codes.  
+[Anatomy of Mad Mints(Google Slides)](https://docs.google.com/presentation/d/1BvufeTaRAwPXAxo14YeXZBOUKeqtacLpezLRgxDr_0s/edit?usp=sharing)
 
 ## Setup and Run
 Look at each directories.
