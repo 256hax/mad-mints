@@ -52,7 +52,7 @@ Note: this is local npm package(private mode).
 
 ### docs
 Anatomy of Mad Mints. Conclusion(Pros/Cons and use-case) ,transaction process flow and directory structure of example codes.
-[Anatomy of Mad Mints(Power Point)](https://github.com/256hax/mad-mints/blob/main/docs/Mad-Mints.pptx)
+[Anatomy of Mad Mints](https://docs.google.com/presentation/d/1BvufeTaRAwPXAxo14YeXZBOUKeqtacLpezLRgxDr_0s/edit?usp=sharing)
 
 ## Setup and Run
 Look at each directories.
