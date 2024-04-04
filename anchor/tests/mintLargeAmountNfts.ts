@@ -7,7 +7,7 @@ import {
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
 
-// Modules
+// Mad Mints
 import { getMetaplexConnection } from 'mad-mints-packages';
 import { createStandardNftTx } from 'mad-mints-packages';
 import { progressBar } from 'mad-mints-packages';

@@ -13,7 +13,7 @@ import {
   Transaction,
 } from '@solana/web3.js';
 
-// Modules
+// Mad Mints
 import { createNonceAccount } from 'mad-mints-packages';
 import { getNonceAccount } from 'mad-mints-packages';
 import { getMetaplexConnection } from 'mad-mints-packages';
